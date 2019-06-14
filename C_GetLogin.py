@@ -1,6 +1,6 @@
 from tkinter import *
 
-class V_login:
+class V_Login:
 
     def __init__(self , fGet):
         self.__fGet = fGet
@@ -61,7 +61,7 @@ class C_GetLogin():
         self.__logKey = logKey
 
     def getLogin(self):
-        v = V_login(self)
+        v = V_Login(self)
         return self.__logKey
 
 c = C_GetLogin()
