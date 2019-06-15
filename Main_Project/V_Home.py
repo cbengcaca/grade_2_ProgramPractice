@@ -1,7 +1,7 @@
 from tkinter import *
-from .V_search.V_SearchMain import V_Search
-from .V_readerEntrance.V_ReaderEntrance import V_ReaderEntrance
-from .V_adminEntrance.V_AdminEntrance import V_AdminEntrance
+from V_search.V_SearchMain import V_Search
+from V_readerEntrance.V_ReaderEntrance import V_ReaderEntrance
+from V_adminEntrance.V_AdminEntrance import V_AdminEntrance
 
 class V_Home():
     def __init__(self):

@@ -40,7 +40,3 @@ class V_SearchReader:
         tv.grid(row=1, columnspan=6, padx=1, pady=1)
 
         mainloop()
-
-
-
-a = V_SearchReader()

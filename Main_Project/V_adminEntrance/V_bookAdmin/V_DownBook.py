@@ -35,6 +35,3 @@ class V_DownBook():
 
     def popup(self):
         tkinter.messagebox.showinfo('提示', '下架成功')
-
-
-a = V_DownBook()

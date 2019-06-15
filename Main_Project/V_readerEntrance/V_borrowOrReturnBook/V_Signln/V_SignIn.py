@@ -41,7 +41,9 @@ class V_SignIn:
 
     def ensure(self):
         #数据库校验账号信息
-        if 0:  # 操作成功
+        count = self.__entryCount.get()
+        pwd = self.__entryPwd.get()
+        if count == '123' and pwd =='1234' :  # 操作成功
             a = tkinter.messagebox.showinfo('提示', '登录成功')
             self.main_Win.status=1
             self.__root.withdraw()

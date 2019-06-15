@@ -37,5 +37,3 @@ class V_SearchOverdueMassage:
         mainloop()
 
 
-
-a = V_SearchOverdueMassage()

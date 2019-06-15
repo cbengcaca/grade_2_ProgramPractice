@@ -1,17 +1,20 @@
 from tkinter import *
 import tkinter.messagebox
-from V_readerEntrance.V_borrowOrReturnBook.pk_V_Signln.V_SignIn import V_SignIn
+from V_readerEntrance.V_borrowOrReturnBook.V_Signln.V_SignIn import V_SignIn
 
 
 class V_BorrowOrReturnBook:
 
-    def __init__(self):
+    def __init__(self,type):
         self.status = 0
         k = V_SignIn(self)
 
         if(self.status):
             self.__root = Tk()
-            self.__root.title("借/还书")
+            if (type == 0):
+                self.__root.title("借书")
+            elif (type == 1):
+                self.__root.title("还书")
             self.__root.geometry('420x70')  # 借书窗口起始
 
             frm = Frame(self.__root)                        # 主界面起始
@@ -31,9 +34,11 @@ class V_BorrowOrReturnBook:
             frm_F.pack(side=TOP)                                    # 第一层放置
 
             frm_S = Frame(frm)                                      # 第二层起始
-            Button(frm_S, text="借书", command=lambda: self.ensure(0), width=6, height=1, font=('Arial', 10)).pack(
-                side=LEFT)
-            Button(frm_S, text="还书", command=lambda: self.ensure(1), width=6, height=1, font=('Arial', 10)).pack(
+            if (type == 0):
+                Button(frm_S, text="借书", command=lambda: self.ensure(0), width=6, height=1, font=('Arial', 10)).pack(
+                    side=LEFT)
+            elif (type == 1):
+                Button(frm_S, text="还书", command=lambda: self.ensure(1), width=6, height=1, font=('Arial', 10)).pack(
                 side=LEFT)
             Button(frm_S, text="返回", command=self.__root.quit, width=6, height=1, font=('Arial', 10)).pack(side=RIGHT)
             frm_S.pack(side=BOTTOM)                                 # 第二层结束
@@ -55,5 +60,23 @@ class V_BorrowOrReturnBook:
             self.__entryISBN.delete(0,END)
         else:       #操作失败
             a = tkinter.messagebox.showerror('错误', '借书失败')
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 
-a = V_BorrowOrReturnBook()
+#a = V_BorrowOrReturnBook(1)            #调用示例，当进入读者接口时调用
+=======
+>>>>>>> c199006a6e690cf0588b1899489cbc93f6625306
+=======
+>>>>>>> c199006a6e690cf0588b1899489cbc93f6625306
+=======
+>>>>>>> c199006a6e690cf0588b1899489cbc93f6625306
+=======
+>>>>>>> c199006a6e690cf0588b1899489cbc93f6625306
+=======
+>>>>>>> c199006a6e690cf0588b1899489cbc93f6625306
+=======
+>>>>>>> c712c79eac62725ffc7b8b6d4d9e9b34f1022186
