@@ -11,7 +11,7 @@ class V_ReaderEntrance():
         labelBlank1 = Label(self.root)
         labelBlank1.pack(side = TOP)
 
-        buttonBuy = Button(self.root,text = 'BUYBOOK')
+        buttonBuy = Button(self.root,text = 'BUYBOOK',command = self.openBookBuy)
         buttonBuy.pack(side = TOP)
 
 
@@ -23,3 +23,8 @@ class V_ReaderEntrance():
 
         mainloop()
 
+    def openBookBuy(self):
+        bookBuy = V_BuyBook()
+        return
+
+    def openBookBorrow
