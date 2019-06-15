@@ -1,5 +1,6 @@
 from tkinter import *
-
+from .V_buyBook.V_BuyBook import V_BuyBook
+from .V_borrowOrReturnBook.V_BorrowOrReturnBook import V_BorrowOrReturnBook
 class V_ReaderEntrance():
     def __init__(self):
         self.root = Tk()

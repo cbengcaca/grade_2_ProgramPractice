@@ -42,6 +42,5 @@ class V_BuyBook:
 
         Label(top, image = self.__imagePay).pack(anchor = CENTER)
 
-if __name__ == '__main__':
-    v=V_BuyBook()
+a = V_BuyBook()
 
