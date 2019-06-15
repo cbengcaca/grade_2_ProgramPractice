@@ -60,23 +60,4 @@ class V_BorrowOrReturnBook:
             self.__entryISBN.delete(0,END)
         else:       #操作失败
             a = tkinter.messagebox.showerror('错误', '借书失败')
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
 #a = V_BorrowOrReturnBook(1)            #调用示例，当进入读者接口时调用
-=======
->>>>>>> c199006a6e690cf0588b1899489cbc93f6625306
-=======
->>>>>>> c199006a6e690cf0588b1899489cbc93f6625306
-=======
->>>>>>> c199006a6e690cf0588b1899489cbc93f6625306
-=======
->>>>>>> c199006a6e690cf0588b1899489cbc93f6625306
-=======
->>>>>>> c199006a6e690cf0588b1899489cbc93f6625306
-=======
->>>>>>> c712c79eac62725ffc7b8b6d4d9e9b34f1022186
