@@ -55,5 +55,3 @@ class V_BorrowOrReturnBook:
             self.__entryISBN.delete(0,END)
         else:       #操作失败
             a = tkinter.messagebox.showerror('错误', '借书失败')
-
-a = V_BorrowOrReturnBook()

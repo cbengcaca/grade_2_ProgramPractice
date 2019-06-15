@@ -15,10 +15,10 @@ class V_ReaderEntrance():
         buttonBuy.pack(side = TOP)
 
 
-        buttonBorrow = Button(self.root,text = 'BORROWBOOK')
+        buttonBorrow = Button(self.root,text = 'BORROWBOOK',command = self.openBookBorrow)
         buttonBorrow.pack(side = TOP)
 
-        buttonReturn = Button(self.root,text = 'RETURNBOOK')
+        buttonReturn = Button(self.root,text = 'RETURNBOOK',command = self.openBookBorrow)
         buttonReturn.pack(side = TOP)
 
         mainloop()
@@ -27,4 +27,6 @@ class V_ReaderEntrance():
         bookBuy = V_BuyBook()
         return
 
-    def openBookBorrow
+    def openBookBorrow(self):
+        borrowOrReturn = V_BorrowOrReturnBook()
+        return

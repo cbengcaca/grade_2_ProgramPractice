@@ -61,4 +61,3 @@ class V_UpBook():
         tkinter.messagebox.showinfo('提示', '上架成功')
 
 
-a = V_UpBook()

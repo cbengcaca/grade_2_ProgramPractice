@@ -17,9 +17,9 @@ class V_AdminEntrance():
         frameButtonAdminBook = Frame(self.root)
         frameButtonAdminBook.pack(side = TOP)
 
-        buttonBookUp = Button(frameButtonAdminBook,text = 'BOOKUP')
+        buttonBookUp = Button(frameButtonAdminBook,text = 'BOOKUP',command = self.openBookUp)
         buttonBookUp.pack(side = LEFT)
-        buttonBookDown = Button(frameButtonAdminBook, text = 'BOOKDOWN')
+        buttonBookDown = Button(frameButtonAdminBook, text = 'BOOKDOWN',command = self.openBookDown)
         buttonBookDown.pack(side = LEFT)
 
         labelBlank2 = Label(self.root)
@@ -28,13 +28,31 @@ class V_AdminEntrance():
         frameButtonAdminWork = Frame(self.root)
         frameButtonAdminWork.pack(side = TOP)
 
-        buttonSearchReader = Button(frameButtonAdminWork,text = 'SEARCH READER')
+        buttonSearchReader = Button(frameButtonAdminWork,text = 'SEARCH READER',command = self.openSearchReader)
         buttonSearchReader.pack(side = LEFT)
-        buttonSearchBorrowList = Button(frameButtonAdminWork,text = 'SEARCH BORROW')
+        buttonSearchBorrowList = Button(frameButtonAdminWork,text = 'SEARCH BORROW',command = self.openSearchBorrow)
         buttonSearchBorrowList.pack(side = LEFT)
-        buttonSearchOverTime = Button(frameButtonAdminWork,text = 'SEARCH OVERTIME')
+        buttonSearchOverTime = Button(frameButtonAdminWork,text = 'SEARCH OVERTIME',command = self.openSearchOver)
         buttonSearchOverTime.pack(side = LEFT)
 
         mainloop()
 
+    def openBookUp(self):
+        bookUp = V_UpBook()
+        return
 
+    def openBookDown(self):
+        bookDown = V_DownBook()
+        return
+
+    def openSearchReader(self):
+        searchReader = V_SearchReader()
+        return
+
+    def openSearchBorrow(self):
+        searchBorrow = V_SearchBorrowMassage()
+        return
+
+    def openSearchOver(self):
+        searchOver = V_SearchOverdueMassage()
+        return

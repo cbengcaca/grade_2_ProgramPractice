@@ -42,5 +42,3 @@ class V_SearchBorrowMassage:
         mainloop()
 
 
-
-a = V_SearchBorrowMassage()
