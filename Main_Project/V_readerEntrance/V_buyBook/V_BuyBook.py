@@ -4,8 +4,8 @@ import qrcode
 
 
 class V_BuyBook:
-    def __init__(self):
-        self.__root = Tk()              #创建顶级窗口
+    def __init__(self,father):
+        self.__root = Toplevel(father)             #创建顶级窗口
         self.__root.title('买书')       #设置窗口题目
         self.__root.geometry('400x200') #设置买书窗口大小
         self.__root.resizable(0, 0)     #不可重设窗口大小
@@ -13,6 +13,8 @@ class V_BuyBook:
         #self.__imagePay = ImageTk.PhotoImage(image=self.__payCode)
         self.__payCode = qrcode.make('success')
         self.__imagePay = ImageTk.PhotoImage(image=self.__payCode)
+        self.__root.attributes("-toolwindow", 1)
+        self.__root.wm_attributes("-topmost", 1)
 
         frm = Frame(self.__root)
 

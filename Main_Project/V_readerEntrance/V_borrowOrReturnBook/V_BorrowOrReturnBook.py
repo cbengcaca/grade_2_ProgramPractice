@@ -1,16 +1,19 @@
 from tkinter import *
 import tkinter.messagebox
-from V_readerEntrance.V_borrowOrReturnBook.V_Signln.V_SignIn import V_SignIn
+from V_readerEntrance.V_borrowOrReturnBook.V_signLn.V_SignIn import V_SignIn
 
 
 class V_BorrowOrReturnBook:
 
-    def __init__(self,type):
+    def __init__(self,type,father):
         self.status = 0
         k = V_SignIn(self)
 
+
         if(self.status):
-            self.__root = Tk()
+            self.__root = Toplevel(father)
+            self.__root.attributes("-toolwindow", 1)
+            self.__root.wm_attributes("-topmost", 1)
             if (type == 0):
                 self.__root.title("借书")
             elif (type == 1):

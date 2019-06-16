@@ -2,11 +2,13 @@ from tkinter import *
 import tkinter.messagebox
 class V_UpBook():
 
-    def __init__(self):
-        self.__root = Tk()
+    def __init__(self,father):
+        self.__root = Toplevel(father)
         self.__root.title('UpBook')
         self.__root.geometry('400x400')
         self.__root.resizable(0,0)
+        self.__root.attributes("-toolwindow", 1)
+        self.__root.wm_attributes("-topmost", 1)
 
         labelBlank1 = Label(self.__root)
         labelBlank1.pack(side = TOP)

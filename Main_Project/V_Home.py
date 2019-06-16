@@ -28,15 +28,15 @@ class V_Home():
         mainloop()
 
     def openSearchEntrance(self):
-        searchEntrance = V_Search()
+        searchEntrance = V_Search(self.__root)
         return
 
     def openReaderWindow(self):
-        readerEntrance = V_ReaderEntrance()
+        readerEntrance = V_ReaderEntrance(self.__root)
         return
 
     def openAdminWindow(self):
-        adminEntrance = V_AdminEntrance()
+        adminEntrance = V_AdminEntrance(self.__root)
         return
 
 a = V_Home()

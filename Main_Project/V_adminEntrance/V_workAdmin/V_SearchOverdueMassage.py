@@ -3,11 +3,13 @@ from tkinter import ttk
 
 class V_SearchOverdueMassage:
 
-    def __init__(self):
-        self.__root = Tk()
+    def __init__(self,father):
+        self.__root = Toplevel(father)
         self.__root.title('SearchBorrowMassage')
         self.__root.geometry('400x420')
-        #self.__root.resizable(0,0)
+        self.__root.resizable(0,0)
+        self.__root.attributes("-toolwindow", 1)
+        self.__root.wm_attributes("-topmost", 1)
 
         frameTreeView = Frame(self.__root)
         frameTreeView.pack(side=TOP)

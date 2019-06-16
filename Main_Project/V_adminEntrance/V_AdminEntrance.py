@@ -5,11 +5,14 @@ from .V_workAdmin.V_SearchBorrowMassage import V_SearchBorrowMassage
 from .V_workAdmin.V_SearchOverdueMassage import V_SearchOverdueMassage
 from .V_workAdmin.V_SearchReader import V_SearchReader
 class V_AdminEntrance():
-    def __init__(self):
-        self.root = Tk()
+    def __init__(self,father):
+        self.root = Toplevel(father)
         self.root.title('ADMIN ENTRANCE')
         self.root.geometry('400x200')
         self.root.resizable(0,0)
+        self.root.attributes("-toolwindow", 1)
+        self.root.wm_attributes("-topmost", 1)
+
 
         labelBlank1 = Label(self.root)
         labelBlank1.pack(side = TOP)
@@ -38,21 +41,21 @@ class V_AdminEntrance():
         mainloop()
 
     def openBookUp(self):
-        bookUp = V_UpBook()
+        bookUp = V_UpBook(self.root)
         return
 
     def openBookDown(self):
-        bookDown = V_DownBook()
+        bookDown = V_DownBook(self.root)
         return
 
     def openSearchReader(self):
-        searchReader = V_SearchReader()
+        searchReader = V_SearchReader(self.root)
         return
 
     def openSearchBorrow(self):
-        searchBorrow = V_SearchBorrowMassage()
+        searchBorrow = V_SearchBorrowMassage(self.root)
         return
 
     def openSearchOver(self):
-        searchOver = V_SearchOverdueMassage()
+        searchOver = V_SearchOverdueMassage(self.root)
         return

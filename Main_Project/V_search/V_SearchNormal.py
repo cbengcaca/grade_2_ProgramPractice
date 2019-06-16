@@ -1,11 +1,13 @@
 from tkinter import *
 
 class V_SearchNormal():
-    def __init__(self):
-        self.root = Tk()
+    def __init__(self,father):
+        self.root = Toplevel(father)
         self.root.title('SEARCHNORMAL')
         self.root.geometry('400x200')
         self.root.resizable(0,0)
+        self.root.attributes("-toolwindow", 1)
+        self.root.wm_attributes("-topmost", 1)
 
         labelBlank1 = Label(self.root)
         labelBlank1.pack(side = TOP)

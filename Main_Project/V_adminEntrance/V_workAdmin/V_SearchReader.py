@@ -3,11 +3,13 @@ from tkinter import ttk
 
 class V_SearchReader:
 
-    def __init__(self):
-        self.__root = Tk()
+    def __init__(self,father):
+        self.__root = Toplevel(father)
         self.__root.title('SearchReader')
         self.__root.geometry('400x420')
-        #self.__root.resizable(0,0)
+        self.__root.resizable(0,0)
+        self.__root.attributes("-toolwindow", 1)
+        self.__root.wm_attributes("-topmost", 1)
 
         frameLine = Frame(self.__root)
         frameLine.pack(side=TOP, ipadx=20)
