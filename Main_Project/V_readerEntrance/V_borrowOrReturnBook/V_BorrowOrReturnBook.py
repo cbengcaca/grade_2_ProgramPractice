@@ -1,26 +1,26 @@
 from tkinter import *
 import tkinter.messagebox
-from V_readerEntrance.V_borrowOrReturnBook.V_signLn.V_SignIn import V_SignIn
+from V_readerEntrance.V_borrowOrReturnBook.V_SignIn import V_SignIn
 
 
 class V_BorrowOrReturnBook:
 
     def __init__(self,type,father):
+        self.father = father
         self.status = 0
-        k = V_SignIn(self)
+        k = V_SignIn(self,father)
 
 
         if(self.status):
-            self.__root = Toplevel(father)
-            self.__root.attributes("-toolwindow", 1)
-            self.__root.wm_attributes("-topmost", 1)
+            self.root = Tk()
             if (type == 0):
-                self.__root.title("借书")
+                self.root.title("借书")
             elif (type == 1):
-                self.__root.title("还书")
-            self.__root.geometry('420x70')  # 借书窗口起始
+                self.root.title("还书")
+            self.root.geometry('420x70')  # 借书窗口起始
+            self.root.geometry(self.father.locate)
 
-            frm = Frame(self.__root)                        # 主界面起始
+            frm = Frame(self.root)                        # 主界面起始
 
             frm_F = Frame(frm)                                      # 第一层起始
 
@@ -43,11 +43,13 @@ class V_BorrowOrReturnBook:
             elif (type == 1):
                 Button(frm_S, text="还书", command=lambda: self.ensure(1), width=6, height=1, font=('Arial', 10)).pack(
                 side=LEFT)
-            Button(frm_S, text="返回", command=self.__root.quit, width=6, height=1, font=('Arial', 10)).pack(side=RIGHT)
+            Button(frm_S, text="返回", command=self.returnFather, width=6, height=1, font=('Arial', 10)).pack(side=RIGHT)
             frm_S.pack(side=BOTTOM)                                 # 第二层结束
 
             frm.pack()                                      # 主界面结束
-            self.__root.mainloop()
+            self.root.mainloop()
+        else:
+            self.returnFather()
 
     def ensure(self,type):
         isbn=self.__entryISBN.get()
@@ -64,3 +66,7 @@ class V_BorrowOrReturnBook:
         else:       #操作失败
             a = tkinter.messagebox.showerror('错误', '借书失败')
 #a = V_BorrowOrReturnBook(1)            #调用示例，当进入读者接口时调用
+
+    def returnFather(self):
+        self.father.showThisWindow()
+        self.root.destroy()

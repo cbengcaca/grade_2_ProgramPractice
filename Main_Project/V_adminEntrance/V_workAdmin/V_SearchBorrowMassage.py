@@ -4,23 +4,23 @@ from tkinter import ttk
 class V_SearchBorrowMassage:
 
     def __init__(self,father):
-        self.__root = Toplevel(father)
-        self.__root.title('SearchBorrowMassage')
-        self.__root.geometry('400x420')
-        self.__root.resizable(0,0)
-        self.__root.attributes("-toolwindow", 1)
-        self.__root.wm_attributes("-topmost", 1)
+        self.father = father
+        self.root = Tk()
+        self.root.title('SearchBorrowMassage')
+        self.root.geometry('400x420')
+        self.root.geometry(self.father.locate)
+        self.root.resizable(0,0)
 
-        frameLine = Frame(self.__root)
+        frameLine = Frame(self.root)
         frameLine.pack(side=TOP, ipadx=20)
-        frameTreeView = Frame(self.__root)
+        frameTreeView = Frame(self.root)
         frameTreeView.pack(side=TOP)
 
         labelBorrowMassageNumber = Label(frameLine, text='Input borrow number:')
         self.__stringVarBorrowMassageNumber = StringVar()
         entryBorrowMassageNumber = Entry(frameLine, textvariable = self.__stringVarBorrowMassageNumber)
         buttonSearch = Button(frameLine, text='查询')
-        buttonCancel = Button(frameLine, text='返回', command = self.__root.quit)
+        buttonCancel = Button(frameLine, text='返回', command = self.returnFather)
         labelBorrowMassageNumber.pack(side = LEFT)
         entryBorrowMassageNumber.pack(side = LEFT)
         buttonSearch.pack(side = LEFT)
@@ -44,3 +44,6 @@ class V_SearchBorrowMassage:
         mainloop()
 
 
+    def returnFather(self):
+        self.father.showThisWindow()
+        self.root.destroy()

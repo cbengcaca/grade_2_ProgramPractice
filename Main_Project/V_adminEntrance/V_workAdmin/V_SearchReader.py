@@ -4,23 +4,23 @@ from tkinter import ttk
 class V_SearchReader:
 
     def __init__(self,father):
-        self.__root = Toplevel(father)
-        self.__root.title('SearchReader')
-        self.__root.geometry('400x420')
-        self.__root.resizable(0,0)
-        self.__root.attributes("-toolwindow", 1)
-        self.__root.wm_attributes("-topmost", 1)
+        self.father = father
+        self.root = Tk()
+        self.root.title('SearchReader')
+        self.root.geometry('400x420')
+        self.root.geometry(self.father.locate)
+        self.root.resizable(0,0)
 
-        frameLine = Frame(self.__root)
+        frameLine = Frame(self.root)
         frameLine.pack(side=TOP, ipadx=20)
-        frameTreeView = Frame(self.__root)
+        frameTreeView = Frame(self.root)
         frameTreeView.pack(side=TOP)
 
         labelReaderNumber = Label(frameLine, text='Input reader number:')
         self.__stringVarReaderNumber = StringVar()
         entryReaderNumber = Entry(frameLine, textvariable = self.__stringVarReaderNumber)
         buttonSearch = Button(frameLine, text='查询')
-        buttonCancel = Button(frameLine, text='返回', command = self.__root.quit)
+        buttonCancel = Button(frameLine, text='返回', command = self.returnFather)
         labelReaderNumber.pack(side = LEFT)
         entryReaderNumber.pack(side = LEFT)
         buttonSearch.pack(side = LEFT)
@@ -42,3 +42,7 @@ class V_SearchReader:
         tv.grid(row=1, columnspan=6, padx=1, pady=1)
 
         mainloop()
+
+    def returnFather(self):
+        self.father.showThisWindow()
+        self.root.destroy()

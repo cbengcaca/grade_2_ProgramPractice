@@ -2,12 +2,12 @@ from tkinter import *
 
 class V_SearchNormal():
     def __init__(self,father):
-        self.root = Toplevel(father)
+        self.father = father
+        self.root = Tk()
         self.root.title('SEARCHNORMAL')
         self.root.geometry('400x200')
+        self.root.geometry(self.father.locate)
         self.root.resizable(0,0)
-        self.root.attributes("-toolwindow", 1)
-        self.root.wm_attributes("-topmost", 1)
 
         labelBlank1 = Label(self.root)
         labelBlank1.pack(side = TOP)
@@ -26,4 +26,14 @@ class V_SearchNormal():
         buttonCancle = Button(frameOkCancle,text = 'CANCLE')
         buttonCancle.pack(side = RIGHT)
 
+        labelBlankLast = Label(self.root)
+        labelBlankLast.pack(side=BOTTOM)
+
+        buttonReturn = Button(self.root, text='RETURN', command=self.returnFather, font='Consoles')
+        buttonReturn.pack(side=BOTTOM)
+
         mainloop()
+
+    def returnFather(self):
+        self.father.showThisWindow()
+        self.root.destroy()

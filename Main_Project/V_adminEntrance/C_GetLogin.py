@@ -4,17 +4,17 @@ class V_Login:
 
     def __init__(self , fGet, father):
         self.__fGet = fGet
-        self.__root = Toplevel(father)
-        self.__root.title('LOGIN')
-        self.__root.resizable(0,0)
-        self.__root.geometry('400x200')
-        self.__root.attributes("-toolwindow", 1)
-        self.__root.wm_attributes("-topmost", 1)
+        self.root = Toplevel(father)
+        self.root.title('LOGIN')
+        self.root.resizable(0,0)
+        self.root.geometry('400x200')
+        self.root.attributes("-toolwindow", 1)
+        self.root.wm_attributes("-topmost", 1)
 
-        labelBlank1 = Label(self.__root)
+        labelBlank1 = Label(self.root)
         labelBlank1.pack(side = TOP)
 
-        frameUserNumber = Frame(self.__root)
+        frameUserNumber = Frame(self.root)
         frameUserNumber.pack(side = TOP)
         labelUserNumber = Label(frameUserNumber,text = 'NUMBER:')
         self.__userNumber = StringVar()
@@ -22,10 +22,10 @@ class V_Login:
         labelUserNumber.pack(side = LEFT)
         entryUserNumber.pack(side = RIGHT)
 
-        labelBlank2 = Label(self.__root)
+        labelBlank2 = Label(self.root)
         labelBlank2.pack(side = TOP)
 
-        frameUserPwd = Frame(self.__root)
+        frameUserPwd = Frame(self.root)
         frameUserPwd.pack(side = TOP)
         labelUserPwd = Label(frameUserPwd,text = 'PASSWORD:')
         self.__userPwd = StringVar()
@@ -33,13 +33,13 @@ class V_Login:
         labelUserPwd.pack(side = LEFT)
         entryUserPwd.pack(side = RIGHT)
 
-        labelBlank3 = Label(self.__root)
+        labelBlank3 = Label(self.root)
         labelBlank3.pack(side = TOP)
 
-        frameButton = Frame(self.__root)
+        frameButton = Frame(self.root)
         frameButton.pack(side = TOP)
         buttonConfirm = Button(frameButton,text = 'COMFIRM',command = self.sendOutInput)
-        buttonCancle = Button(frameButton,text = 'CANCLE',command = self.__root.quit)
+        buttonCancle = Button(frameButton,text = 'CANCLE',command = self.root.quit)
         buttonConfirm.pack(side = LEFT)
         buttonCancle.pack(side = RIGHT)
 
@@ -51,7 +51,7 @@ class V_Login:
 
     def sendOutInput(self):
         self.__fGet.setLogin(self.getInput())
-        self.__root.quit()
+        self.root.quit()
         return
 
 class C_GetLogin():
