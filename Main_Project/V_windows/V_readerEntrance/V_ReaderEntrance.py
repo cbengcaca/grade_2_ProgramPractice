@@ -1,6 +1,6 @@
 from tkinter import *
-from V_readerEntrance.V_buyBook.V_BuyBook import V_BuyBook
-from V_readerEntrance.V_borrowOrReturnBook.V_BorrowOrReturnBook import V_BorrowOrReturnBook
+from V_windows.V_readerEntrance.V_BuyBook import V_BuyBook
+from V_windows.V_readerEntrance.V_BorrowOrReturnBook import V_BorrowOrReturnBook
 import win32gui,win32con
 
 class V_ReaderEntrance():

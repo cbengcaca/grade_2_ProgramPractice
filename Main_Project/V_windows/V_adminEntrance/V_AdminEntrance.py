@@ -1,9 +1,9 @@
 from tkinter import *
-from .V_bookAdmin.V_DownBook import V_DownBook
-from .V_bookAdmin.V_UpBook import V_UpBook
-from .V_workAdmin.V_SearchBorrowMassage import V_SearchBorrowMassage
-from .V_workAdmin.V_SearchOverdueMassage import V_SearchOverdueMassage
-from .V_workAdmin.V_SearchReader import V_SearchReader
+from V_windows.V_adminEntrance.V_DownBook import V_DownBook
+from V_windows.V_adminEntrance.V_UpBook import V_UpBook
+from V_windows.V_adminEntrance.V_SearchBorrowMassage import V_SearchBorrowMassage
+from V_windows.V_adminEntrance.V_SearchOverdueMassage import V_SearchOverdueMassage
+from V_windows.V_adminEntrance.V_SearchReader import V_SearchReader
 import win32con,win32gui
 class V_AdminEntrance():
     def __init__(self,father):

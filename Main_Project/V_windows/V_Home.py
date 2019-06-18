@@ -1,8 +1,7 @@
 from tkinter import *
-from V_search.V_SearchMain import V_Search
-from V_readerEntrance.V_ReaderEntrance import V_ReaderEntrance
-from V_adminEntrance.V_AdminEntrance import V_AdminEntrance
-import _winapi
+from V_windows.V_search.V_SearchMain import V_Search
+from V_windows.V_readerEntrance.V_ReaderEntrance import V_ReaderEntrance
+from V_windows.V_adminEntrance.V_AdminEntrance import V_AdminEntrance
 import win32gui,win32con
 
 
@@ -35,6 +34,12 @@ class V_Home():
         buttonAdmin = Button(self.root,text = 'ADMIN ENTRANCE',command = self.openAdminWindow,font = 'Consoles')
         buttonAdmin.pack(side = TOP)
 
+        labelBlankLast = Label(self.root)
+        labelBlankLast.pack(side = TOP)
+
+        buttonClose = Button(self.root,text = 'CLOSE SYSTEM', command = self.root.destroy, font = 'Consoles')
+        buttonClose.pack(side = TOP)
+
         mainloop()
 
 
@@ -53,7 +58,7 @@ class V_Home():
         adminEntrance = V_AdminEntrance(self)
         return
 
-#win32
+
     def getWindowHandle(self):
         return win32gui.FindWindow(None, self.root.title())
 
