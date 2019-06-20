@@ -7,7 +7,8 @@ class C_SearchPlus:
         self.bookList = []
 
     def sendSearchToTcp(self, v_searchPlus, searchList):
-        sendToServ = SendToServ(searchList, self.host, self.bookList)
+        sendToServ = SendToServ()
+        sendToServ.send(searchList, self.host, self.bookList)
         self.viewBookInformation(v_searchPlus)
 
     def viewBookInformation(self,v_searchPlus):
