@@ -80,17 +80,17 @@ class V_SearchPlus():
 
     def sendSearch(self):
         if(self.bookName.get() == ''):
-            self.bookName.set(NONE)
+            self.bookName.set('None')
         if (self.author.get() == ''):
-            self.author.set(NONE)
+            self.author.set('None')
         if(self.minPrice.get() == ''):
-            self.minPrice.set(NONE)
+            self.minPrice.set('None')
         if(self.maxPrice.get() == ''):
-            self.maxPrice.set(NONE)
+            self.maxPrice.set('None')
         if(self.bookPublishTime.get() == ''):
-            self.bookPublishTime.set(NONE)
+            self.bookPublishTime.set('None')
         if(self.bookPublisher.get() == ''):
-            self.bookPublisher.set(NONE)
+            self.bookPublisher.set('None')
         c_searchPlus = C_SearchPlus()
         searchList = [ 1, self.bookName.get(), self.minPrice.get(), self.maxPrice.get(), self.bookPublishTime.get(), self.author.get(), self.bookPublisher.get()]
         c_searchPlus.sendSearchToTcp(self, searchList)
