@@ -2,7 +2,7 @@ from socket import *
 from tkinter import *
 from tkinter import messagebox
 import threading
-from Hoster.M_DBOp.M_DBOperation import M_DBOperation
+from M_Hoster.M_DBOp.M_devideWordsOp import M_devideWordsOp
 import time
 class TcpHoster(threading.Thread):
     def __init__(self):
@@ -46,7 +46,8 @@ class TcpHoster(threading.Thread):
                     searchRec = ''
                     if recKeyWords[0] == '1': #主页查书
                         searchWords = recKeyWords[1:]
-                        searchRec = M_DBOperation(searchWords)
+                        searchRec = M_devideWordsOp()
+                        searchRec.setSearch(searchWords)
 
                     if searchRec.selectBook():
                         for singleLine in searchRec.selectBook():
