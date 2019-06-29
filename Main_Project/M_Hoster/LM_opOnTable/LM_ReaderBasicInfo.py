@@ -9,25 +9,28 @@ class DBOpr_ReaderBasicInfo:
     def insert(self, insertList):
 
         self.selSQL = 'INSERT INTO t_readerbasicinfo VALUES(%s,%s,%s,%s);'
-        self.readerId = insertList[0]  # 接单号
-        self.readerName = insertList[1]  # 书号
-        self.readerSex = insertList[2]  # 读者id
-        self.readerCreditScore = insertList[3]  # 借书时间
-        self.args = (self.readerId, self.readerName, self.readerSex, self.readerCreditScore)
+        self.selSQL += str(insertList[0])
+        self.selSQL += ','
+        self.selSQL += str(insertList[1])
+        self.selSQL += ','
+        self.selSQL += str(insertList[2])
+        self.selSQL += ','
+        self.selSQL += str(insertList[3])
+        self.selSQL += ');'
         self.dbOpr()
 
     def delete(self, readerId):
 
-        self.selSQL = 'DELETE FROM t_readerbasicinfo WHERE readerId = %s;'
-        self.readerId = readerId
-        self.args = (self.readerId)
+        self.selSQL = 'DELETE FROM t_readerbasicinfo WHERE readerId = '
+        self.selSQL += str(readerId)
+        self.selSQL += ';'
         self.dbOpr()
 
     def dbOpr(self):
 
         db = self.connectReaderBasicInfoDB()
         cur = db.cursor()
-        result = cur.execute(self.selSQL, self.args)
+        result = cur.execute(self.selSQL)
         db.commit()
         cur.close()
         db.close()
