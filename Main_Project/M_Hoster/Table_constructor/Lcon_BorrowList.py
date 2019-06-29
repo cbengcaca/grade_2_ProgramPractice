@@ -1,4 +1,4 @@
-class DBOpr_BorrowList:
+class Lcon_BorrowList:
     def insert(self, insertList):
         self.selSQL = 'INSERT INTO t_borrowlist VALUES('
         self.selSQL += str(insertList[0])

@@ -1,5 +1,5 @@
 from M_Hoster.M_Action.M_superDb import M_SuperDb
-class LM_opOnBookInfo(M_SuperDb):
+class Lcon_opOnBookInfo(M_SuperDb):
     def add(self, bookIsbn):
         self.sql = ''
         self.sql += "insert into t_bookinfo set isbn = "

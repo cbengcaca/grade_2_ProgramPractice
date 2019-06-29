@@ -1,6 +1,6 @@
 import pymysql
 
-class T_shelflocate:
+class Lcon_shelflocate:
     def add(self,shelfID,locate):
         db = self.ConnectDB()
         cursor = db.cursor()

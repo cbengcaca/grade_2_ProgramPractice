@@ -1,5 +1,5 @@
 
-class LM_opOnTBookChange:
+class Lcon_opOnTBookChange:
     def add(self,opType,operId,bookId):
         self.sql = ''
         self.sql += "insert into t_bookchange set "

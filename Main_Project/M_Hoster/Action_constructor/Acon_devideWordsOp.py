@@ -1,11 +1,6 @@
 import pymysql
-
-class M_devideWordsOp:
-
-    #连接数据库
-    def connectDB(self):
-        db = pymysql.connect('localhost','root','19990418sY','softwarepractice')
-        return db
+from M_Hoster.M_Action.M_superDb import M_SuperDb
+class Acon_devideWordsOp(M_superDBOp):
 
     def setSearch(self, infoList):
         self.__bookName = infoList[0]           #书名
@@ -45,23 +40,8 @@ class M_devideWordsOp:
     #根据排序关键字和标识符，生成对应的SQL语句
     #查询书籍并返回书籍信息
 
-    def beginSql(self):
-        ret = ''
-        con = self.connectDB()
-        cursor = con.cursor()
-        try:
-            cursor.execute(self.__selSQL)
-            ret = cursor.fetchall()
-            con.close()
-        except Exception as e:
-            print("error:unable to fetch data", e)
-        return ret
 
-if __name__=='__main__':
-    L = ['None', 'None', 'None', 'None', 'None', 'None', 'None', 'None']
-    p = M_devideWordsOp()
-    p.setSearch(L)
-    if p.beginSql():
-        for singleLine in p.beginSql():
-            singleLineChangeToStr = ','.join([str(i) for i in singleLine])
-            print(singleLineChangeToStr)
+
+L = ['None', 'None', 'None', 'None', 'None', 'None', 'None', 'None']
+p = M_devideWordsOp()
+p.setSearch(L)

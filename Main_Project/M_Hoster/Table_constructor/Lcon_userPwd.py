@@ -1,6 +1,6 @@
 import pymysql
 
-class T_userid:
+class Lcon_userid:
 
     def add(self,readerID,pwd):
         db = self.ConnectDB()

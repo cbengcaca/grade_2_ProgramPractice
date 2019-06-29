@@ -1,5 +1,5 @@
 
-class LM_opOnTISBNAndShelf:
+class Lcon_opOnTISBNAndShelf:
     def add(self,isbn,shelfid):
         self.sql = ''
         self.sql += "insert into t_isbnandshelf set "

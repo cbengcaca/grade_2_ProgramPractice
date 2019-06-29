@@ -1,5 +1,5 @@
 
-class LM_keyWord:
+class Lcon_keyWord:
     def add(self,keyWordContext):
         self.sql = ''
         self.sql += "insert into t_keyword set keyWordContext = "

@@ -1,6 +1,6 @@
 import pymysql
 
-class DBOpr_ReaderConnection:
+class Lcon_ReaderConnection:
     def insert(self, insertList):
         self.selSQL = ''
         self.selSQL = 'INSERT INTO t_readerconnection VALUES('
@@ -17,7 +17,6 @@ class DBOpr_ReaderConnection:
         self.selSQL += ';'
         return self.selSQL
 
-a = DBOpr_ReaderConnection()
 x = 22
 List=[x,13842191924]
 a.insert(List)

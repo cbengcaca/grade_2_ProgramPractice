@@ -1,4 +1,4 @@
-class DBOpr_ReaderBasicInfo:
+class Lcon_ReaderBasicInfo:
 
     def insert(self, insertList):
         self.selSQL = ''

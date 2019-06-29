@@ -1,5 +1,5 @@
 
-class LM_opOnTKeyWordAndISBN:
+class Lcon_opOnTKeyWordAndISBN:
     def add(self,keyWordId,isbn):
         self.sql = ''
         self.sql += "insert into t_keywordandisbn set "
