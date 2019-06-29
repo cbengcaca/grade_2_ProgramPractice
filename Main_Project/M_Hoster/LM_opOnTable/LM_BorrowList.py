@@ -1,13 +1,5 @@
-import pymysql
-
 class DBOpr_BorrowList:
-
-    def connectBorrowListDB(self):
-        db = pymysql.connect('106.52.87.149', 'root', '000000', 'softwarePractice')
-        return db
-
     def insert(self, insertList):
-
         self.selSQL = 'INSERT INTO t_borrowlist VALUES('
         self.selSQL += str(insertList[0])
         self.selSQL += ','
@@ -17,23 +9,14 @@ class DBOpr_BorrowList:
         self.selSQL += ','
         self.selSQL += str(insertList[3])
         self.selSQL += ');'
-        self.dbOpr()
+        return self.selSQL
 
     def delete(self, borrowId):
 
         self.selSQL = 'DELETE FROM t_borrowlist WHERE borrowId = '
         self.selSQL += str(borrowId)
         self.selSQL += ';'
-        self.dbOpr()
-
-    def dbOpr(self):
-
-        db = self.connectBorrowListDB()
-        cur = db.cursor()
-        result = cur.execute(self.selSQL)
-        db.commit()
-        cur.close()
-        db.close()
+        return self.selSQL
 
 
 

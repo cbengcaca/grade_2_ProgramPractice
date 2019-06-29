@@ -1,10 +1,7 @@
-import pymysql
-from M_Hoster.LM_opOnTable.LM_superDBOp import LM_superDBOp
-class LM_opOnTBookChange(LM_superDBOp):
-    def __init__(self):
-        super(LM_opOnTBookChange, self).__init__()
 
+class LM_opOnTBookChange:
     def add(self,opType,operId,bookId):
+        self.sql = ''
         self.sql += "insert into t_bookchange set "
         self.sql += "opType = "
         self.sql += "'" + opType + "'"
@@ -15,6 +12,7 @@ class LM_opOnTBookChange(LM_superDBOp):
         self.sql += ",opTime = now()"
 
     def delete(self,opId):
+        self.sql = ''
         self.sql += "delete from t_bookchange where opId = "
         self.sql += opId
 

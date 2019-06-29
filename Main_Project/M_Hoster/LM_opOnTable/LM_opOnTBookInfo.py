@@ -1,18 +1,16 @@
-import pymysql
-from M_Hoster.LM_opOnTable.LM_superDBOp import LM_superDBOp
-class LM_opOnBookInfo(LM_superDBOp):
-    def __init__(self):
-        super(LM_opOnBookInfo, self).__init__()
-
+from M_Hoster.M_Action.M_superDb import M_SuperDb
+class LM_opOnBookInfo(M_SuperDb):
     def add(self, bookIsbn):
-        self.sql += "insert into T_BookInfo set isbn = "
+        self.sql = ''
+        self.sql += "insert into t_bookinfo set isbn = "
         self.sql += bookIsbn
         self.sql += ";"
-
+        self.beginSql(self.sql)
     #自带批量删除组件
     def delete(self, bookid,isbn):
+        self.sql = ''
         flag = 0
-        self.sql += "delete from T_BookInfo "
+        self.sql += "delete from t_bookinfo "
         if bookid is not "None":
             flag += 1
             if flag is 1:
@@ -28,7 +26,4 @@ class LM_opOnBookInfo(LM_superDBOp):
             self.sql += "isbn = '" + isbn + "'"
 
 a = LM_opOnBookInfo()
-
-a.delete('None','1')
-#a.update('1','5')
-a.beginSql()
+a.add('5')

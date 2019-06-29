@@ -1,13 +1,11 @@
-import pymysql
-from M_Hoster.LM_opOnTable.LM_superDBOp import LM_superDBOp
-class LM_opOnTKeyWordAndISBN(LM_superDBOp):
-    def __init__(self):
-        super(LM_opOnTKeyWordAndISBN, self).__init__()
 
+class LM_opOnTKeyWordAndISBN:
     def add(self,keyWordId,isbn):
+        self.sql = ''
         self.sql += "insert into t_keywordandisbn set "
         self.sql += "keyWordId = '" + keyWordId + "'"
         self.sql += ",isbn = '" + isbn + "'"
+        return self.sql
 
     def delete(self,keyWordId,isbn):
         flag = 0
@@ -25,3 +23,5 @@ class LM_opOnTKeyWordAndISBN(LM_superDBOp):
             else:
                 self.sql += " AND"
             self.sql += "isbn = '" + isbn + "'"
+
+        return self.sql

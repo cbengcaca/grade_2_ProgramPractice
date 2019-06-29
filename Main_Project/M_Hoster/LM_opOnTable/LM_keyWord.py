@@ -1,13 +1,13 @@
-import pymysql
-from M_Hoster.LM_opOnTable.LM_superDBOp import LM_superDBOp
-class LM_keyWord(LM_superDBOp):
-    def __init__(self):
-        super(LM_keyWord, self).__init__()
 
+class LM_keyWord:
     def add(self,keyWordContext):
+        self.sql = ''
         self.sql += "insert into t_keyword set keyWordContext = "
         self.sql += "'" + keyWordContext + "'"
+        return self.sql
 
     def delete(self,keyWordId):
+        self.sql = ''
         self.sql += "delete from t_keyword where "
         self.sql += "keyWordId = '" + keyWordId + "'"
+        return self.sql

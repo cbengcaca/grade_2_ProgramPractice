@@ -1,15 +1,13 @@
-import pymysql
-from M_Hoster.LM_opOnTable.LM_superDBOp import LM_superDBOp
-class LM_opOnTISBNAndShelf(LM_superDBOp):
-    def __init__(self):
-        super(LM_opOnTISBNAndShelf, self).__init__()
 
+class LM_opOnTISBNAndShelf:
     def add(self,isbn,shelfid):
+        self.sql = ''
         self.sql += "insert into t_isbnandshelf set "
         self.sql += "isbn = " + isbn
         self.sql += ",shelfid = " + shelfid
 
     def delete(self,isbn,shelfid):
+        self.sql = ''
         flag = 0
         self.sql += "delete from t_isbnandshelf "
         if isbn != "None":
