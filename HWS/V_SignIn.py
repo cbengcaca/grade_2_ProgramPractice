@@ -3,7 +3,7 @@ from tkinter import *
 import tkinter as tk
 import tkinter.messagebox
 import datetime
-import V_BorrowOrReturnBook
+import M_SignIn
 
 class V_SignIn:
     def __init__(self):
@@ -40,12 +40,19 @@ class V_SignIn:
         self.__root.mainloop()
 
     def ensure(self):
-        #数据库校验账号信息
-        if 0:  # 操作成功
+        userId = self.__entryCount.get()
+        pwd = self.__entryPwd.get()
+        global status
+        status = M_SignIn.M_SignIn.sign(userId,pwd)
+        #数据库校验账号信息 status = M_SignIn.Sign
+        if status:  # 操作成功
             a = tkinter.messagebox.showinfo('提示', '登录成功')
-            V_BorrowOrReturnBook.status=1
+            global userID
+            userID = userId
+            status=1
             self.__root.withdraw()
             self.__root.quit()
         else:  # 操作失败
-            V_BorrowOrReturnBook.status = 0
             a = tkinter.messagebox.showerror('错误', '账号或密码错误！')
+userID = 0
+status = 0

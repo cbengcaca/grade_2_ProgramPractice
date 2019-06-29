@@ -9,10 +9,9 @@ def mainWindow():
     a = V_BorrowOrReturnBook()
 
 class V_BorrowOrReturnBook:
-
     def __init__(self):                #type等于0为借书，type等于1为还书
         k = V_SignIn.V_SignIn()
-        if(status):
+        if(V_SignIn.status):
             self.__root = Tk()
             self.__root.title("借/还书")
             self.__root.geometry('420x70')  # 借书窗口起始
@@ -58,5 +57,4 @@ class V_BorrowOrReturnBook:
             self.__entryISBN.delete(0,END)
         else:       #操作失败
             a = tkinter.messagebox.showerror('错误', '借书失败')
-status = 0
 mainWindow()
