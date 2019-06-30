@@ -4,7 +4,7 @@ from M_SqlRunner import M_SqlRunner
 
 class M_BuyBook:
     def __init__(self, bookId):
-        self.__bookId = bookId
+        self.__bookId = int(bookId)
         self.__sqlRunner = M_SqlRunner()
         self.__isbn = self.getISBN()[0][0]
         self.__bookPrice = self.getPrice()[0][0]
@@ -48,8 +48,10 @@ class M_BuyBook:
         self.__sqlList.append(self.updateAmount())
         self.__sqlList.append(self.addDeal())
         self.__sqlList.append(self.delBookId())
-        self.__sqlRunner.beginSql(self.__sqlList)
+        ret = self.__sqlRunner.beginSql(self.__sqlList)
+        return ret
 
 if __name__=='__main__':
     p = M_BuyBook(27)
-    p.buybook()
+    if p.buybook():
+        print("success")
