@@ -1,7 +1,7 @@
 from tkinter import *
 from PIL import Image, ImageTk
 import qrcode
-
+from C_BuyBook import C_BuyBook
 
 class V_BuyBook:
     def __init__(self):
@@ -17,13 +17,13 @@ class V_BuyBook:
         frm = Frame(self.__root)
 
         frameLable = Frame(frm)                   #设置标签
-        Label(frameLable, text = 'ISBN').pack(side = TOP)
+        Label(frameLable, text = 'BOOKNUMBER').pack(side = TOP)
         frameLable.pack(side = LEFT)
 
         frameEntry = Frame(frm)                   #设置输入框
-        varISBN = StringVar()
-        self.__entryISBN = Entry(frameEntry, textvariable = varISBN, width = 40)
-        self.__entryISBN.pack(side = LEFT)
+        self.__varBookId = StringVar()
+        self.__entryBookId = Entry(frameEntry, textvariable = self.__varBookId, width = 40)
+        self.__entryBookId.pack(side = LEFT)
         frameEntry.pack(side = RIGHT)
 
         frm.pack(side = TOP, anchor = CENTER)
@@ -35,13 +35,35 @@ class V_BuyBook:
 
         mainloop()
 
+    # 创建付款子窗口
     def payBook(self):
-
-        top = Toplevel()
+        top = Toplevel()             #创建顶级窗口
         top.title('支付')
-
+        top.geometry('400x400')
+        top.resizable(0, 0)  # 不可重设窗口大小
+        msg = Message(top, text = '请扫描二维码付款', width = 100).pack(anchor = CENTER)
         Label(top, image = self.__imagePay).pack(anchor = CENTER)
 
+        frameButton = Frame(top)
+        Button(frameButton, text = '我已付款', command = self.resultOfBuy, width = 6, height = 1).pack(side = LEFT)     #支付成功
+        Button(frameButton, text = '放弃购买', command = self.__root.quit, width = 6, height = 1).pack(side = LEFT)
+        frameButton.pack(anchor = CENTER)
+
+    def getBookId(self):
+        return self.__varBookId.get()
+
+    def resultOfBuy(self):
+        top = Toplevel()  # 创建顶级窗口
+        top.title('购买结果')
+        top.geometry('400x200')
+        top.resizable(0, 0)  # 不可重设窗口大小
+        buyBook = C_BuyBook(self.getBookId())
+        if buyBook.sendMessage():
+            msg = Message(top, text = '购买成功，请关闭此窗口！', width = 150).pack(anchor = CENTER)
+        else:
+            msg = Message(top, text = '购买失败，请去前台。', width = 120).pack(anchor = CENTER)
+
 if __name__ == '__main__':
-    v=V_BuyBook()
+    v = V_BuyBook()
+
 
