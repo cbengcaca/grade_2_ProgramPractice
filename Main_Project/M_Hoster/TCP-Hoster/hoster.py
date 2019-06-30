@@ -2,7 +2,7 @@ from socket import *
 from tkinter import *
 from tkinter import messagebox
 import threading
-from M_Hoster.M_Action.M_devideWordsOp import M_devideWordsOp
+from M_Hoster.M_Control.MC_devideWords import MC_devideWords
 import time
 class TcpHoster(threading.Thread):
     def __init__(self):
@@ -42,21 +42,18 @@ class TcpHoster(threading.Thread):
                             break
                         recKeyWords.append(data)
                     print(recKeyWords)
-
-                    searchRec = ''
+################主页查书
                     if recKeyWords[0] == '1': #主页查书
-                        searchWords = recKeyWords[1:]
-                        searchRec = M_devideWordsOp()
-                        searchRec.setSearch(searchWords)
-
-                    if searchRec.selectBook():
-                        for singleLine in searchRec.selectBook():
-                            print(singleLine)
-                            singleLineChangeToStr = ','.join([str(i) for i in singleLine])
-                            print(singleLineChangeToStr)
-                            cs.sendall(bytes(singleLineChangeToStr,'utf-8'))
-                            time.sleep(0.1)
-
+                        searchRec = MC_devideWords()
+                        ret = searchRec.devideWords(recKeyWords[1:])
+                        if ret:
+                            for singleLine in ret:
+                                print(singleLine)
+                                singleLineChangeToStr = ','.join([str(i) for i in singleLine])
+                                print(singleLineChangeToStr)
+                                cs.sendall(bytes(singleLineChangeToStr, 'utf-8'))
+                                time.sleep(0.1)
+################主页查书毕
                     time.sleep(0.1)
                     cs.sendall(bytes('==', 'utf-8'))
                     cs.close()
