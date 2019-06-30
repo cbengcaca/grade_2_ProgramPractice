@@ -1,105 +1,57 @@
 import datetime
 import pymysql
+from M_SqlRunner import M_SqlRunner
 
 class M_BuyBook:
     def __init__(self, bookId):
-        self.__bookId = bookId
-        self.__isbn = self.getISBN()[0]
-        self.__bookPrice = self.getPrice()[0]
-
-    #连接数据库
-    def connectDB(self):
-        db = pymysql.connect('106.52.87.149', 'root', '000000', 'softwarePractice')
-        return db
+        self.__bookId = int(bookId)
+        self.__sqlRunner = M_SqlRunner()
+        self.__isbn = self.getISBN()[0][0]
+        self.__bookPrice = self.getPrice()[0][0]
+        self.__sqlList = []
 
     #获取书籍ISBN
     def getISBN(self):
-        selSQL = 'SELECT ISBN'
-        selSQL += ' FROM t_bookinfo'
-        selSQL += ' WHERE bookId = %d'%(self.__bookId)
-        ret = ''
-        con = self.connectDB()
-        cursor = con.cursor()
-        try:
-            cursor.execute(selSQL)
-            ret = cursor.fetchone()  # 获取单个元组
-            con.close()
-        except Exception as e:
-            print("error:unable to fetch data", e)
+        selISBNSQL = ['SELECT ISBN FROM t_bookinfo WHERE bookId = %d'%(self.__bookId)]
+        ret = self.__sqlRunner.beginSql(selISBNSQL)
         return ret
 
     #获取价格
     def getPrice(self):
         #动态SQL查询语句
-        selSQL = 'SELECT bookPrice'
-        selSQL += ' FROM t_isbninfo'
-        selSQL += ' WHERE ISBN = %s'%(self.__isbn)
-        ret = ''
-        con = self.connectDB()
-        cursor = con.cursor()
-        try:
-            cursor.execute(selSQL)
-            ret = cursor.fetchone()  #获取单个元组
-            con.close()
-        except Exception as e:
-            print("error:unable to fetch data", e)
+        selPriceSQL = ['SELECT bookPrice FROM t_isbninfo WHERE ISBN = %s'%(self.__isbn)]
+        ret = self.__sqlRunner.beginSql(selPriceSQL)
         return ret
 
-    #若付款成功，更新书库中书籍数量信息
+    #若付款成功，生成更新书库中书籍数量信息的动态SQL语句
     def updateAmount(self):
         #动态更新语句
         upSQL = 'UPDATE t_isbninfo '
         upSQL += 'SET bookMaxNum = bookMaxNum - 1, bookAvailableNum = bookAvailableNum - 1, bookSaleNumber = bookSaleNumber + 1'
         upSQL += ' WHERE ISBN = %d'%(self.__isbn)
-        ret = False
-        con = self.connectDB()
-        cursor = con.cursor()
-        try:
-            ret = cursor.execute(upSQL)
-            con.commit()
-        except Exception as e:
-            con.rollback()
-            print("Failure", e)
-        con.close()
-        return ret
+        return upSQL
 
+    #若付款成功，生成删除书籍Id的动态语句
     def delBookId(self):
         delSQL = 'DELETE FROM t_bookinfo WHERE bookId = %d'%(self.__bookId)
-        ret = False
-        con = self.connectDB()
-        cursor = con.cursor()
-        try:
-            ret = cursor.execute(delSQL)
-            con.commit()
-        except Exception as e:
-            con.rollback()
-            print("Failure", e)
-        con.close()
-        return ret
+        return delSQL
 
-    #若付款成功，则增加一个已完成订单
+    #若付款成功，生成增加一个已完成订单的insert动态SQL语句
     def addDeal(self):
         #动态insert语句
         inSQL = "INSERT INTO t_deal (dealTime, dealPrice, ISBN) VALUES('"
         inSQL += datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S') + "','"
         inSQL += "%s"%(self.__bookPrice) + "','" + "%d"%(self.__isbn) + "')"
-        ret = ''
-        con = self.connectDB()
-        cursor = con.cursor()
-        try:
-            ret = cursor.execute(inSQL)
-            con.commit()
-        except Exception as e:
-            con.rollback()
-            print("Failure", e)
-        con.close()
+        return inSQL
+
+    def buybook(self):
+        self.__sqlList.append(self.updateAmount())
+        self.__sqlList.append(self.addDeal())
+        self.__sqlList.append(self.delBookId())
+        ret = self.__sqlRunner.beginSql(self.__sqlList)
         return ret
 
 if __name__=='__main__':
     p = M_BuyBook(27)
-    if p.updateAmount():
-        print("success")
-    if p.delBookId():
-        print ("success")
-    if p.addDeal():
+    if p.buybook():
         print("success")

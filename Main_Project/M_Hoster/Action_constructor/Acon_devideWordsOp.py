@@ -1,7 +1,6 @@
 import pymysql
-from M_Hoster.M_Action.M_superDb import M_SuperDb
-class Acon_devideWordsOp(M_superDBOp):
 
+class Acon_devideWordsOp:
     def setSearch(self, infoList):
         self.__bookName = infoList[0]           #书名
         self.__bookMinPrice = infoList[1]       #价格底线
@@ -37,11 +36,10 @@ class Acon_devideWordsOp(M_superDBOp):
             self.__selSQL += "ORDER BY bookSaleNum"
         if self.__sortFlag == '0':  # 降序排列
             self.__selSQL += " DESC"
-    #根据排序关键字和标识符，生成对应的SQL语句
-    #查询书籍并返回书籍信息
 
+        return self.__selSQL
+        #根据排序关键字和标识符，生成对应的SQL语句
+        #查询书籍并返回书籍信息
 
 
 L = ['None', 'None', 'None', 'None', 'None', 'None', 'None', 'None']
-p = M_devideWordsOp()
-p.setSearch(L)

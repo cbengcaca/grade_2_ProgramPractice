@@ -2,13 +2,14 @@ from socket import *
 from tkinter import *
 from tkinter import messagebox
 import threading
-from M_Hoster.M_Control.MC_devideWords import MC_devideWords
+from M_DBOperation import M_DBOperation
+from M_BuyBook import M_BuyBook
 import time
 class TcpHoster(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
         self.flag = True
-        self.host = '192.168.43.125'
+        self.host = '192.168.56.1'
         self.port = 4700
         self.buf = 1024
         self.addr = (self.host, self.port)
@@ -42,18 +43,32 @@ class TcpHoster(threading.Thread):
                             break
                         recKeyWords.append(data)
                     print(recKeyWords)
-################主页查书
+
+                    #searchRec = ''
                     if recKeyWords[0] == '1': #主页查书
-                        searchRec = MC_devideWords()
-                        ret = searchRec.devideWords(recKeyWords[1:])
-                        if ret:
-                            for singleLine in ret:
+                        searchWords = recKeyWords[1:]
+                        searchRec = M_DBOperation(searchWords)
+
+                        if searchRec.selectBook():
+                            for singleLine in searchRec.selectBook():
                                 print(singleLine)
                                 singleLineChangeToStr = ','.join([str(i) for i in singleLine])
                                 print(singleLineChangeToStr)
-                                cs.sendall(bytes(singleLineChangeToStr, 'utf-8'))
+                                cs.sendall(bytes(singleLineChangeToStr,'utf-8'))
                                 time.sleep(0.1)
-################主页查书毕
+
+                    elif recKeyWords[0] == '2': #买书
+                        buyBookId = recKeyWords[1]
+                        buyBookRec = M_BuyBook(buyBookId)
+
+                        if buyBookRec.buybook():
+                            buyRecData = '1'     #标志购买成功
+                            cs.sendall(bytes(buyRecData, 'utf-8'))
+                            time.sleep(0.1)
+                        else:
+                            buyRecData = '0'     #标志购买失败
+                            cs.sendall(bytes(buyRecData, 'utf-8'))
+
                     time.sleep(0.1)
                     cs.sendall(bytes('==', 'utf-8'))
                     cs.close()
