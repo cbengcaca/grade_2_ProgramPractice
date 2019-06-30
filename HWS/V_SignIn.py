@@ -10,6 +10,7 @@ class V_SignIn:
         self.__root=Tk()
         self.__root.title('登录')
         self.__root.geometry('420x120')
+        self.__root.resizable(0, 0)
 
         frm = Frame(self.__root)                    # 主界面起始
         frm_F = Frame(frm)                                  # 第一层起始
