@@ -1,26 +1,24 @@
+from tkinter import ttk
 from tkinter import *
+import tkinter as tk
 import tkinter.messagebox
-from V_windows.V_readerEntrance.V_SignIn import V_SignIn
+import datetime
+import V_SignIn
+import MC_BorrowOrReturnBook
 
+def mainWindow():
+    a = V_BorrowOrReturnBook()
 
 class V_BorrowOrReturnBook:
+    def __init__(self):                #type等于0为借书，type等于1为还书
+        k = V_SignIn.V_SignIn()
+        if(V_SignIn.status):
+            self.__root = Tk()
+            self.__root.title("借/还书")
+            self.__root.geometry('420x70')  # 借书窗口起始
+            self.__root.resizable(0,0)
 
-    def __init__(self,type,father):
-        self.father = father
-        self.status = 0
-        k = V_SignIn(self,father)
-
-
-        if(self.status):
-            self.root = Tk()
-            if (type == 0):
-                self.root.title("借书")
-            elif (type == 1):
-                self.root.title("还书")
-            self.root.geometry('420x70')  # 借书窗口起始
-            self.root.geometry(self.father.locate)
-
-            frm = Frame(self.root)                        # 主界面起始
+            frm = Frame(self.__root)                        # 主界面起始
 
             frm_F = Frame(frm)                                      # 第一层起始
 
@@ -37,36 +35,29 @@ class V_BorrowOrReturnBook:
             frm_F.pack(side=TOP)                                    # 第一层放置
 
             frm_S = Frame(frm)                                      # 第二层起始
-            if (type == 0):
-                Button(frm_S, text="借书", command=lambda: self.ensure(0), width=6, height=1, font=('Arial', 10)).pack(
-                    side=LEFT)
-            elif (type == 1):
-                Button(frm_S, text="还书", command=lambda: self.ensure(1), width=6, height=1, font=('Arial', 10)).pack(
+            Button(frm_S, text="借书", command=lambda: self.BorrowOrReturn(0), width=6, height=1, font=('Arial', 10)).pack(
                 side=LEFT)
-            Button(frm_S, text="返回", command=self.returnFather, width=6, height=1, font=('Arial', 10)).pack(side=RIGHT)
+            Button(frm_S, text="还书", command=lambda: self.BorrowOrReturn(1), width=6, height=1, font=('Arial', 10)).pack(
+                side=LEFT)
+            Button(frm_S, text="返回", command=self.__root.quit, width=6, height=1, font=('Arial', 10)).pack(side=RIGHT)
             frm_S.pack(side=BOTTOM)                                 # 第二层结束
 
             frm.pack()                                      # 主界面结束
-            self.root.mainloop()
-        else:
-            self.returnFather()
+            self.__root.mainloop()
 
-    def ensure(self,type):
+    def BorrowOrReturn(self,type):
         isbn=self.__entryISBN.get()
+        a = MC_BorrowOrReturnBook.MC_BorrowOrReturnBook()
         if type == 0:
-            pass
+            x = a.Borrow(V_SignIn.userID,isbn)
             #借书控制层书籍信息操作
         elif type == 1:
-            pass
+            x = a.Return(isbn)
             #还书控制层书籍信息操作
 
-        if 1:       #操作成功
-            a = tkinter.messagebox.showinfo('提示', '借书成功')
+        if x == 0:       #操作成功
+            a = tkinter.messagebox.showinfo('提示', '操作成功')
             self.__entryISBN.delete(0,END)
         else:       #操作失败
-            a = tkinter.messagebox.showerror('错误', '借书失败')
-#a = V_BorrowOrReturnBook(1)            #调用示例，当进入读者接口时调用
-
-    def returnFather(self):
-        self.father.showThisWindow()
-        self.root.destroy()
+            a = tkinter.messagebox.showerror('错误', '操作失败')
+mainWindow()

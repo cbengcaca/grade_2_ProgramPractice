@@ -3,7 +3,7 @@ from tkinter import *
 import tkinter as tk
 import tkinter.messagebox
 import datetime
-import M_SignIn
+import VC_SignIn
 
 class V_SignIn:
     def __init__(self):
@@ -25,14 +25,14 @@ class V_SignIn:
         self.__entryCount = Entry(frm_FR, textvariable=var_count, width=30, font=('Verdana', 15))
         self.__entryCount.pack()
         var_pwd = StringVar()
-        self.__entryPwd = Entry(frm_FR, textvariable=var_pwd, width=30, font=('Verdana', 15))
+        self.__entryPwd = Entry(frm_FR, textvariable=var_pwd, width=30, font=('Verdana', 15),show = '*')
         self.__entryPwd.pack()
         frm_FR.pack(side=RIGHT)                                     # 第一层右结束
 
         frm_F.pack(side=TOP)                                # 第一层结束
 
         frm_S = Frame(frm)                                  #第二层开始
-        Button(frm_S, text="确认", command=self.ensure, width=6, height=1, font=('Arial', 10)).pack(side=LEFT)
+        Button(frm_S, text="确认", command=self.sign, width=6, height=1, font=('Arial', 10)).pack(side=LEFT)
         Button(frm_S, text="返回", command=self.__root.quit, width=6, height=1, font=('Arial', 10)).pack(side=RIGHT)
         frm_S.pack(side=BOTTOM)                             #第二层结束
 
@@ -40,14 +40,15 @@ class V_SignIn:
 
         self.__root.mainloop()
 
-    def ensure(self):
+    def sign(self):
         userId = self.__entryCount.get()
         pwd = self.__entryPwd.get()
+        a = VC_SignIn.C_SignIn()
+        a.ensure(userId,pwd)
         global status
-        status = M_SignIn.M_SignIn.sign(userId,pwd)
         #数据库校验账号信息 status = M_SignIn.Sign
         if status:  # 操作成功
-            a = tkinter.messagebox.showinfo('提示', '登录成功')
+            b = tkinter.messagebox.showinfo('提示', '登录成功')
             global userID
             userID = userId
             status=1

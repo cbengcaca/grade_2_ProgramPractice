@@ -1,7 +1,8 @@
 from M_SqlRunner import *
-class M_SignIn:
-    def sign(UserID,pwd):
-        sql = "SELECT readerPwd from t_userpwd where readerId = '"+UserID+"'"
+import Acon_SignIn
+class MC_SignIn:
+    def sign(self,UserID,pwd):
+        sql = Acon_SignIn.select_Pwd(UserID)
         list = []
         list.append(sql)
         run = M_SqlRunner()
