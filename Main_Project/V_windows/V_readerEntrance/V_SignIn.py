@@ -3,7 +3,7 @@ from tkinter import *
 import tkinter as tk
 import tkinter.messagebox
 import datetime
-import VC_SignIn
+from VC_windowsControl import VC_SignIn
 
 class V_SignIn:
     def __init__(self):
@@ -43,7 +43,7 @@ class V_SignIn:
     def sign(self):
         userId = self.__entryCount.get()
         pwd = self.__entryPwd.get()
-        a = VC_SignIn.C_SignIn()
+        a = VC_SignIn.VC_SignIn()
         a.ensure(userId,pwd)
         global status
         #数据库校验账号信息 status = M_SignIn.Sign

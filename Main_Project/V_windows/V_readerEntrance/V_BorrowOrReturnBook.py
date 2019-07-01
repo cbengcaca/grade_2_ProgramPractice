@@ -3,11 +3,8 @@ from tkinter import *
 import tkinter as tk
 import tkinter.messagebox
 import datetime
-import V_SignIn
-import MC_BorrowOrReturnBook
-
-def mainWindow():
-    a = V_BorrowOrReturnBook()
+from V_windows.V_readerEntrance import V_SignIn
+from VC_windowsControl import VC_BorrowOrReturnBook
 
 class V_BorrowOrReturnBook:
     def __init__(self):                #type等于0为借书，type等于1为还书
@@ -47,17 +44,11 @@ class V_BorrowOrReturnBook:
 
     def BorrowOrReturn(self,type):
         isbn=self.__entryISBN.get()
-        a = MC_BorrowOrReturnBook.MC_BorrowOrReturnBook()
-        if type == 0:
-            x = a.Borrow(V_SignIn.userID,isbn)
-            #借书控制层书籍信息操作
-        elif type == 1:
-            x = a.Return(isbn)
-            #还书控制层书籍信息操作
-
-        if x == 0:       #操作成功
+        a = VC_BorrowOrReturnBook.VC_BorrowOrReturnBook()
+        result = a.VC_BORB(V_SignIn.userID,isbn,type)
+        if result == 0:       #操作成功
             a = tkinter.messagebox.showinfo('提示', '操作成功')
             self.__entryISBN.delete(0,END)
         else:       #操作失败
             a = tkinter.messagebox.showerror('错误', '操作失败')
-mainWindow()
+#a = V_BorrowOrReturnBook()

@@ -1,5 +1,4 @@
-import V_BorrowOrReturnBook
-import MC_BorrowOrReturnBook
+from M_Hoster.M_Control import MC_BorrowOrReturnBook
 
 class VC_BorrowOrReturnBook:
     def VC_BORB(self,userID,bookID,type):
