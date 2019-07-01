@@ -10,11 +10,13 @@ class Lcon_opOnTBookChange:
         self.sql += ",bookId = "
         self.sql += bookId
         self.sql += ",opTime = now()"
+        return self.sql
 
     def delete(self,opId):
         self.sql = ''
         self.sql += "delete from t_bookchange where opId = "
         self.sql += opId
+        return self.sql
 
 #a = LM_opOnTBookChange()
 #a.add('upbook','1','25')
