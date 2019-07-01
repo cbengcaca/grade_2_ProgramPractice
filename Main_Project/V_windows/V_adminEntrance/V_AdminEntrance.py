@@ -1,16 +1,29 @@
 from tkinter import *
+from tkinter import messagebox
 from V_windows.V_adminEntrance.V_DownBook import V_DownBook
 from V_windows.V_adminEntrance.V_UpBook import V_UpBook
 from V_windows.V_adminEntrance.V_SearchBorrowMassage import V_SearchBorrowMassage
 from V_windows.V_adminEntrance.V_SearchOverdueMassage import V_SearchOverdueMassage
 from V_windows.V_adminEntrance.V_SearchReader import V_SearchReader
+from VC_windowsControl.VC_AdminEntranceControl import VC_AdminEntranceControl
+from V_windows.V_adminEntrance.C_GetLogin import C_GetLogin
 import win32con,win32gui
 class V_AdminEntrance():
     def __init__(self,father):
         self.father = father
+        self.root = Tk()
+        logWindow = C_GetLogin()
+        self.logKey = []
+        self.logKey = logWindow.getLogin()
+        self.logKey.insert(0,'9')
+        controler = VC_AdminEntranceControl()
+        result = controler.getLogKeyToCompare(self.logKey)
+        if result[0] is '0':
+            self.returnFather()
+
         self.locate = father.locate
         self.size = father.size
-        self.root = Tk()
+
         self.root.title('ADMIN ENTRANCE')
         self.root.geometry(self.father.size)
         self.root.geometry(self.father.locate)
@@ -46,7 +59,7 @@ class V_AdminEntrance():
         labelBlankLast = Label(self.root)
         labelBlankLast.pack(side=BOTTOM)
 
-        buttonReturn = Button(self.root, text='RETURN', command=self.returnFather, font='Consoles')
+        buttonReturn = Button(self.root, text='RETURN', command=self.destoryAndReturn, font='Consoles')
         buttonReturn.pack(side=BOTTOM)
 
         mainloop()
@@ -78,7 +91,14 @@ class V_AdminEntrance():
 
     def returnFather(self):
         self.father.showThisWindow()
+
+    def selfDestory(self):
+        self.root.quit()
         self.root.destroy()
+
+    def destoryAndReturn(self):
+        self.returnFather()
+        self.selfDestory()
 
 #win32
     def getWindowHandle(self):
@@ -89,3 +109,4 @@ class V_AdminEntrance():
 
     def hideThisWindow(self):
         win32gui.ShowWindow(self.getWindowHandle(),win32con.SW_HIDE)
+

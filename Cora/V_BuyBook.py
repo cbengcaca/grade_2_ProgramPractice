@@ -1,7 +1,9 @@
 from tkinter import *
 from PIL import Image, ImageTk
 import qrcode
+import time
 from C_BuyBook import C_BuyBook
+from tkinter import messagebox
 
 class V_BuyBook:
     def __init__(self):
@@ -46,22 +48,27 @@ class V_BuyBook:
 
         frameButton = Frame(top)
         Button(frameButton, text = '我已付款', command = self.resultOfBuy, width = 6, height = 1).pack(side = LEFT)     #支付成功
-        Button(frameButton, text = '放弃购买', command = self.__root.quit, width = 6, height = 1).pack(side = LEFT)
+        Button(frameButton, text = '放弃购买', command = top.quit, width = 6, height = 1).pack(side = LEFT)
         frameButton.pack(anchor = CENTER)
 
     def getBookId(self):
         return self.__varBookId.get()
 
     def resultOfBuy(self):
-        top = Toplevel()  # 创建顶级窗口
-        top.title('购买结果')
-        top.geometry('400x200')
-        top.resizable(0, 0)  # 不可重设窗口大小
+        # top = Toplevel()  # 创建顶级窗口
+        # top.title('购买结果')
+        # top.geometry('400x200')
+        # top.resizable(0, 0)  # 不可重设窗口大小
         buyBook = C_BuyBook(self.getBookId())
+
         if buyBook.sendMessage():
-            msg = Message(top, text = '购买成功，请关闭此窗口！', width = 150).pack(anchor = CENTER)
+            messagebox.showinfo('购买成功', '购买成功，谢谢惠顾。')
+            self.__root.quit()
+            self.__root.destroy()
         else:
-            msg = Message(top, text = '购买失败，请去前台。', width = 120).pack(anchor = CENTER)
+            messagebox.showwarning('购买失败', '请去前台处理。')
+            self.__root.quit()
+            self.__root.destroy()
 
 if __name__ == '__main__':
     v = V_BuyBook()

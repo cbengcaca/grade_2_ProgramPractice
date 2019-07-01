@@ -2,9 +2,9 @@ from tkinter import *
 
 class V_Login:
 
-    def __init__(self , fGet, father):
+    def __init__(self , fGet ):
         self.__fGet = fGet
-        self.root = Toplevel(father)
+        self.root = Toplevel()
         self.root.title('LOGIN')
         self.root.resizable(0,0)
         self.root.geometry('400x200')
@@ -46,12 +46,15 @@ class V_Login:
         mainloop()
 
     def getInput(self):
-        login = [self.__userNumber.get(),self.__userPwd.get()]
+        loginId = self.__userNumber.get()
+        loginPwd = self.__userPwd.get()
+        login = [loginId,loginPwd]
         return login
 
     def sendOutInput(self):
         self.__fGet.setLogin(self.getInput())
         self.root.quit()
+        self.root.destroy()
         return
 
 class C_GetLogin():
@@ -62,6 +65,6 @@ class C_GetLogin():
     def setLogin(self,logKey):
         self.__logKey = logKey
 
-    def getLogin(self, father):
-        v = V_Login(self,father)
+    def getLogin(self):
+        v = V_Login(self)
         return self.__logKey
