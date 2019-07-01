@@ -45,10 +45,10 @@ class V_BorrowOrReturnBook:
     def BorrowOrReturn(self,type):
         isbn=self.__entryISBN.get()
         a = VC_BorrowOrReturnBook.VC_BorrowOrReturnBook()
-        result = a.VC_BORB(V_SignIn.userID,isbn,type)
+        result = int(a.VC_BORB(V_SignIn.userID,isbn,type))
         if result == 0:       #操作成功
             a = tkinter.messagebox.showinfo('提示', '操作成功')
             self.__entryISBN.delete(0,END)
         else:       #操作失败
             a = tkinter.messagebox.showerror('错误', '操作失败')
-#a = V_BorrowOrReturnBook()
+a = V_BorrowOrReturnBook()

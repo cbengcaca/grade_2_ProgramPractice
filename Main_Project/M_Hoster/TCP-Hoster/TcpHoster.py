@@ -5,12 +5,14 @@ import threading
 from M_Hoster.M_Control.MC_devideWords import MC_devideWords
 from M_Hoster.M_Control.MC_upBook import MC_UpBook
 from M_Hoster.M_Control.MC_adminLogin import MC_AdminLogin
+from M_Hoster.M_Control import MC_BorrowOrReturnBook
+from M_Hoster.M_Control import MC_SignIn
 import time
 class TcpHoster(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
         self.flag = True
-        self.host = '10.240.224.173'
+        self.host = '192.168.56.1'
         self.port = 4700
         self.buf = 1024
         self.addr = (self.host, self.port)
@@ -57,8 +59,19 @@ class TcpHoster(threading.Thread):
                                 time.sleep(0.1)
 ################主页查书
 
+
+################借书
+                    elif recKeyWords[0] == '3':
+                        a = MC_BorrowOrReturnBook.MC_BorrowOrReturnBook()
+                        result = []
+                        result.append(str(a.Borrow(recKeyWords[1],recKeyWords[2])))
+                        result.append("==")
+                        for i in result:
+                            if i == "==":
+                                break
+                            cs.sendall(bytes(i,'utf-8'))
 ################上架
-                    if recKeyWords[0] == '4':
+                    elif recKeyWords[0] == '4':
                         bookUper = MC_UpBook()
                         ret = bookUper.searchIfIsbnExist(recKeyWords)
                         if ret:  #isbn存在
@@ -68,16 +81,38 @@ class TcpHoster(threading.Thread):
                             print("isbn is not exist")
                             cs.sendall(bytes("0",'utf-8'))
 
-                    if recKeyWords[0] == '4.1':
+                    elif recKeyWords[0] == '4.1':
                         bookUper = MC_UpBook()
                         ret = bookUper.addNewBook_exist(recKeyWords)
 
-                    if recKeyWords[0] == '4.0':
+                    elif recKeyWords[0] == '4.0':
                         bookUper = MC_UpBook()
                         ret = bookUper.addNewBook_notexist(recKeyWords)
 ################上架毕
+
+################还书
+                    elif recKeyWords[0] == '9':
+                        a = MC_BorrowOrReturnBook.MC_BorrowOrReturnBook()
+                        result = []
+                        result.append(str(a.Return(recKeyWords[1])))
+                        result.append("==")
+                        for i in result:
+                            if i == "==":
+                                break
+                            cs.sendall(bytes(i, 'utf-8'))
+
+################登录
+                    elif recKeyWords[0] == '10':
+                        a = MC_SignIn.MC_SignIn()
+                        result = []
+                        result.append(str(a.sign(recKeyWords[1],recKeyWords[2])))
+                        result.append("==")
+                        for i in result:
+                            if i == "==":
+                                break
+                            cs.sendall(bytes(i,'utf-8'))
 ################管理员登录
-                    if recKeyWords[0] == '9':
+                    elif recKeyWords[0] == '11':
                         adminLoger = MC_AdminLogin()
                         ret = adminLoger.beginCompare(recKeyWords[1:])
                         cs.sendall(bytes(ret,'utf-8'))
