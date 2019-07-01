@@ -5,6 +5,7 @@ class Lcon_opOnTISBNAndShelf:
         self.sql += "insert into t_isbnandshelf set "
         self.sql += "isbn = " + isbn
         self.sql += ",shelfid = " + shelfid
+        return self.sql
 
     def delete(self,isbn,shelfid):
         self.sql = ''
@@ -24,6 +25,5 @@ class Lcon_opOnTISBNAndShelf:
                 self.sql += "AND "
             self.sql += "shelfid = '" + shelfid + "'"
 
-a = LM_opOnTISBNAndShelf()
-a.delete('1','0')
-a.beginSql()
+        return self.sql
+

@@ -1,11 +1,12 @@
-from M_Hoster.M_Action.M_superDb import M_SuperDb
-class Lcon_opOnBookInfo(M_SuperDb):
-    def add(self, bookIsbn):
+
+class Lcon_opOnBookInfo():
+    def add(self, bookid,bookIsbn):
         self.sql = ''
-        self.sql += "insert into t_bookinfo set isbn = "
-        self.sql += bookIsbn
+        self.sql += "insert into t_bookinfo set bookid = " + bookid
+        self.sql += ",bookIsbn = " + bookIsbn
         self.sql += ";"
-        self.beginSql(self.sql)
+
+        return self.sql
     #自带批量删除组件
     def delete(self, bookid,isbn):
         self.sql = ''
@@ -25,5 +26,4 @@ class Lcon_opOnBookInfo(M_SuperDb):
                 self.sql += "AND"
             self.sql += "isbn = '" + isbn + "'"
 
-a = LM_opOnBookInfo()
-a.add('5')
+        return self.sql

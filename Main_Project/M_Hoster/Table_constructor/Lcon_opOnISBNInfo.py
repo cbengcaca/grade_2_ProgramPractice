@@ -1,9 +1,10 @@
 
 class Lcon_opOnISBNInfo:
-    def add(self,bookName,bookAuthor,bookPublisher,bookPrice,bookCreateTime,bookMaxNum,bookAviliableNum,bookSaleNumber):
+    def add(self,isbn,bookName,bookAuthor,bookPublisher,bookPrice,bookCreateTime,bookMaxNum,bookAviliableNum,bookSaleNumber):
         self.sql = ''
         self.sql += "insert into t_isbninfo set "
-        self.sql += "bookName = '" + bookName + "'"
+        self.sql += "isbn = '" + isbn + "'"
+        self.sql += ",bookName = '" + bookName + "'"
         self.sql += ",bookAuthor = '" + bookAuthor + "'"
         self.sql += ",bookPulisher = '" + bookPublisher + "'"
         self.sql += ",bookPrice = '" + bookPrice + "'"
