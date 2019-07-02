@@ -2,9 +2,7 @@ from socket import *
 from tkinter import *
 from tkinter import messagebox
 import threading
-from M_Hoster.M_Control.MC_devideWords import MC_devideWords
-from M_Hoster.M_Control.MC_upBook import MC_UpBook
-from M_Hoster.M_Control.MC_adminLogin import MC_AdminLogin
+
 from M_Hoster.M_Control import MC_BorrowOrReturnBook
 from M_Hoster.M_Control.MC_devideWords import MC_devideWords
 from M_Hoster.M_Control.MC_upBook import MC_UpBook
@@ -78,9 +76,8 @@ class TcpHoster(threading.Thread):
                     elif recKeyWords[0] == '4':
                         bookUper = MC_UpBook()
                         ret = bookUper.searchIfIsbnExist(recKeyWords)
-                        if ret is '1':  ##isbn不存在
-                            cs.sendall(bytes("1", 'utf-8'))
-                        else:
+
+                        if ret:
                             for singleLine in ret:
                                 print(singleLine)
                                 singleLineChangeToStr = ','.join([str(i) for i in singleLine])
@@ -88,19 +85,21 @@ class TcpHoster(threading.Thread):
                                 cs.sendall(bytes(singleLineChangeToStr, 'utf-8'))
                                 time.sleep(0.1)
 
+                        else:
+                            cs.sendall(bytes("1", 'utf-8'))
                     ###isbn已存在
                     elif recKeyWords[0] == '4.1':
                         bookUper = MC_UpBook()
                         bookId = bookUper.addNewBook_exist(recKeyWords[1:])
                         cs.sendall(bytes(bookId, 'utf-8'))
-                        time.sleep(0.1)
+                        time.sleep(0.5)
 
                     ###isbn不存在
                     elif recKeyWords[0] == '4.0':
                         bookUper = MC_UpBook()
                         bookId = bookUper.addNewBook_notexist(recKeyWords[1:])
                         cs.sendall(bytes(bookId, 'utf-8'))
-                        time.sleep(0.1)
+                        time.sleep(0.5)
 ################上架毕
 ################查读
                     if recKeyWords[0] == '6':

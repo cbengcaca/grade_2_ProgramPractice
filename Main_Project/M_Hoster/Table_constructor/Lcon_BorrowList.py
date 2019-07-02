@@ -1,15 +1,9 @@
+import time
 class Lcon_BorrowList:
-    def insert(self, insertList):
-        self.selSQL = 'INSERT INTO t_borrowlist VALUES('
-        self.selSQL += str(insertList[0])
-        self.selSQL += ','
-        self.selSQL += str(insertList[1])
-        self.selSQL += ','
-        self.selSQL += str(insertList[2])
-        self.selSQL += ','
-        self.selSQL += str(insertList[3])
-        self.selSQL += ');'
-        return self.selSQL
+    def insert(self, bookID, UserID):
+        sql = "Insert into t_borrowlist (bookId,readerId,borrowTime) value ('" \
+              + bookID + "','" + UserID + "','" + str(time.strftime('%Y-%m-%d %H:%M:%S')) + "')"
+        return sql
 
     def delete(self, borrowId):
 

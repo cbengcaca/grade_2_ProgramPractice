@@ -36,7 +36,7 @@ class MC_UpBook:
         sqlList.append(self.creater.changeBookStock(isbn))
         sqlList += self.creater.upBook(operId, isbn, bookId)
         status = self.runner.beginSql(sqlList)
-        if status is '1':
+        if status is not '-1':
             return bookId
         else:
             return '0'
@@ -57,7 +57,7 @@ class MC_UpBook:
         status = self.runner.beginSql(sqlList)
 
         #添加成功 返回bookId
-        if status is  '1':
+        if status is  not '-1':
             return bookId
         else:
             return '0'
