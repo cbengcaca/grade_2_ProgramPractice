@@ -15,9 +15,9 @@ class M_SqlRunner:
                     return ret
             db.commit()
             db.close()
-            print("operation done")
+            return '1'
         except Exception as e:
             db.rollback()
             print("error:unable to fetch data", e)
+            return '-1'
 
-        return ret
