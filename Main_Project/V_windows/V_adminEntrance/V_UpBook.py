@@ -106,7 +106,7 @@ class V_UpBook():
         #不存在返回书架信息
         ret = vc.searchIsbnExist(infoList)
 
-        if ret is '1':##isbn存在
+        if ret is  '1':##isbn存在
             infoList = ['4.1', self.isbn, self.operId]
             ##获得最新的bookid
             bookId = vc.addBookExist(infoList)
@@ -128,7 +128,6 @@ class V_UpBook():
     def addNewBookNotExist(self):
         infoList = ['4.0']
         infoList.append(self.isbn)
-
         infoList.append(self.stringName.get())
         infoList.append(self.stringAuthor.get())
         infoList.append(self.stringPublisher.get())
