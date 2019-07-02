@@ -57,16 +57,26 @@ class TcpHoster(threading.Thread):
                                 cs.sendall(bytes(singleLineChangeToStr,'utf-8'))
                                 time.sleep(0.1)
 
-                    elif recKeyWords[0] == '2': #买书
-                        buyBookId = recKeyWords[1]
-                        buyBookRec = M_BuyBook(buyBookId)
+                    if recKeyWords[0] == '2': #买书
+                        buyBookId = recKeyWords[1]  #书籍Id
+                        payFlag = recKeyWords[2]    #付款标志
+                        buyBookRec = M_BuyBook(buyBookId, payFlag)
+                        ret = buyBookRec.buybook()
 
-                        if buyBookRec.buybook():
+                        if ret == '1':
                             buyRecData = '1'     #标志购买成功
                             cs.sendall(bytes(buyRecData, 'utf-8'))
                             time.sleep(0.1)
+                        elif ret == '-1':
+                            buyRecData = '-1'     #标志已经付款了，但数据库操作失败
+                            cs.sendall(bytes(buyRecData, 'utf-8'))
+                            time.sleep(0.1)
+                        elif ret == '0':
+                            buyRecData = '0'  #标志界面中的书籍ID有误
+                            cs.sendall(bytes(buyRecData, 'utf-8'))
+                            time.sleep(0.1)
                         else:
-                            buyRecData = '0'     #标志购买失败
+                            buyRecData = '2'  # 已查找对应书籍，但未付款
                             cs.sendall(bytes(buyRecData, 'utf-8'))
 
                     time.sleep(0.1)
