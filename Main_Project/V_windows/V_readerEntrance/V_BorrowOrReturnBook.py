@@ -1,7 +1,7 @@
 from tkinter import *
 import tkinter.messagebox
 from V_windows.V_readerEntrance.V_SignIn import V_SignIn
-
+from VC_windowsControl.VC_BorrowOrReturnBook import VC_BorrowOrReturnBook
 
 class V_BorrowOrReturnBook:
 
@@ -50,20 +50,27 @@ class V_BorrowOrReturnBook:
         else:
             self.returnFather()
 
-    def ensure(self,type):
-        isbn=self.__entryISBN.get()
-        if type == 0:
-            pass
-            #借书控制层书籍信息操作
-        elif type == 1:
-            pass
-            #还书控制层书籍信息操作
+    def BorrowOrReturn(self, type):
 
-        if 1:       #操作成功
-            a = tkinter.messagebox.showinfo('提示', '借书成功')
-            self.__entryISBN.delete(0,END)
-        else:       #操作失败
-            a = tkinter.messagebox.showerror('错误', '借书失败')
+        isbn = self.__entryISBN.get()
+
+        a = VC_BorrowOrReturnBook()
+
+        result = a.VC_BORB(V_SignIn.userID, isbn, type)
+
+        result = int(a.VC_BORB(V_SignIn.userID, isbn, type))
+
+        if result == 0:  # 操作成功
+
+            a = tkinter.messagebox.showinfo('提示', '操作成功')
+
+            self.__entryISBN.delete(0, END)
+
+
+
+        else:  # 操作失败
+
+            a = tkinter.messagebox.showerror('错误', '操作失败')
 #a = V_BorrowOrReturnBook(1)            #调用示例，当进入读者接口时调用
 
     def returnFather(self):

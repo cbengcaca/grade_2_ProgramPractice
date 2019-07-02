@@ -1,31 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f0bb6d0d-23fa-420f-b47f-3c3e106e3db3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/M_Clienter/TcpClienter.py" beforeDir="false" afterPath="$PROJECT_DIR$/M_Clienter/TcpClienter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/M_Hoster/Action_constructor/Acon_upBook.py" beforeDir="false" afterPath="$PROJECT_DIR$/M_Hoster/Action_constructor/Acon_upBook.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/M_Hoster/M_Control/MC_upBook.py" beforeDir="false" afterPath="$PROJECT_DIR$/M_Hoster/M_Control/MC_upBook.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/M_Hoster/M_SqlRunner/M_SqlRunner.py" beforeDir="false" afterPath="$PROJECT_DIR$/M_Hoster/M_SqlRunner/M_SqlRunner.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/M_Hoster/TCP-Hoster/TcpHoster.py" beforeDir="false" afterPath="$PROJECT_DIR$/M_Hoster/TCP-Hoster/TcpHoster.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/M_Hoster/Table_constructor/Lcon_BorrowList.py" beforeDir="false" afterPath="$PROJECT_DIR$/M_Hoster/Table_constructor/Lcon_BorrowList.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/M_Hoster/Table_constructor/Lcon_opOnISBNInfo.py" beforeDir="false" afterPath="$PROJECT_DIR$/M_Hoster/Table_constructor/Lcon_opOnISBNInfo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/M_Hoster/Table_constructor/Lcon_opOnTBookInfo.py" beforeDir="false" afterPath="$PROJECT_DIR$/M_Hoster/Table_constructor/Lcon_opOnTBookInfo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/V_windows/V_Home.py" beforeDir="false" afterPath="$PROJECT_DIR$/V_windows/V_Home.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/V_windows/V_adminEntrance/C_GetLogin.py" beforeDir="false" afterPath="$PROJECT_DIR$/V_windows/V_adminEntrance/C_GetLogin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/V_windows/V_adminEntrance/V_AdminEntrance.py" beforeDir="false" afterPath="$PROJECT_DIR$/V_windows/V_adminEntrance/V_AdminEntrance.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/V_windows/V_adminEntrance/V_DownBook.py" beforeDir="false" afterPath="$PROJECT_DIR$/V_windows/V_adminEntrance/V_DownBook.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/V_windows/V_adminEntrance/V_SearchBorrowMassage.py" beforeDir="false" afterPath="$PROJECT_DIR$/V_windows/V_adminEntrance/V_SearchBorrowMassage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/V_windows/V_adminEntrance/V_SearchOverdueMassage.py" beforeDir="false" afterPath="$PROJECT_DIR$/V_windows/V_adminEntrance/V_SearchOverdueMassage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/V_windows/V_adminEntrance/V_SearchReader.py" beforeDir="false" afterPath="$PROJECT_DIR$/V_windows/V_adminEntrance/V_SearchReader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/V_windows/V_adminEntrance/V_UpBook.py" beforeDir="false" afterPath="$PROJECT_DIR$/V_windows/V_adminEntrance/V_UpBook.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/V_windows/V_readerEntrance/V_BorrowOrReturnBook.py" beforeDir="false" afterPath="$PROJECT_DIR$/V_windows/V_readerEntrance/V_BorrowOrReturnBook.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/V_windows/V_readerEntrance/V_BuyBook.py" beforeDir="false" afterPath="$PROJECT_DIR$/V_windows/V_readerEntrance/V_BuyBook.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/V_windows/V_readerEntrance/V_ReaderEntrance.py" beforeDir="false" afterPath="$PROJECT_DIR$/V_windows/V_readerEntrance/V_ReaderEntrance.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/V_windows/V_readerEntrance/V_SignIn.py" beforeDir="false" afterPath="$PROJECT_DIR$/V_windows/V_readerEntrance/V_SignIn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/V_windows/V_search/V_SearchMain.py" beforeDir="false" afterPath="$PROJECT_DIR$/V_windows/V_search/V_SearchMain.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/V_windows/V_search/V_SearchNormal.py" beforeDir="false" afterPath="$PROJECT_DIR$/V_windows/V_search/V_SearchNormal.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/V_windows/V_search/V_SearchPlus.py" beforeDir="false" afterPath="$PROJECT_DIR$/V_windows/V_search/V_SearchPlus.py" afterDir="false" />
-    </list>
+    <list default="true" id="f0bb6d0d-23fa-420f-b47f-3c3e106e3db3" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,11 +10,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/V_windows/V_readerEntrance/V_BorrowOrReturnBook.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
-              <caret line="62" column="37" lean-forward="true" selection-start-line="62" selection-start-column="37" selection-end-line="62" selection-end-column="37" />
+            <state relative-caret-position="544">
+              <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/V_windows/V_readerEntrance/V_SignIn.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="15" lean-forward="true" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+              <folding>
+                <element signature="e#0#23#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -55,22 +46,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/M_Hoster/M_Control/MC_BorrowOrReturnBook.py">
+        <entry file="file://$PROJECT_DIR$/M_Hoster/TCP-Hoster/TcpHoster.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="657">
+              <caret line="157" column="25" selection-start-line="157" selection-start-column="25" selection-end-line="157" selection-end-column="25" />
               <folding>
-                <element signature="e#0#44#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/V_windows/V_Home.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="e#0#21#0" expanded="true" />
+                <element signature="e#0#20#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -148,6 +129,7 @@
         <option value="$PROJECT_DIR$/M_Clienter/TcpClienter.py" />
         <option value="$PROJECT_DIR$/M_Hoster/M_SqlRunner/M_SqlRunner.py" />
         <option value="$PROJECT_DIR$/M_Hoster/Table_constructor/Lcon_BorrowList.py" />
+        <option value="$PROJECT_DIR$/V_windows/V_readerEntrance/V_BorrowOrReturnBook.py" />
       </list>
     </option>
   </component>
@@ -160,7 +142,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-12" />
     <option name="width" value="1462" />
     <option name="height" value="1730" />
@@ -242,6 +224,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
@@ -349,16 +332,19 @@
       <workItem from="1562044493047" duration="996000" />
       <workItem from="1562045522590" duration="548000" />
       <workItem from="1562046140830" duration="15000" />
+      <workItem from="1562050729913" duration="47000" />
+      <workItem from="1562051543752" duration="257000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1686000" />
+    <option name="totallyTimeSpent" value="1990000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1453" height="873" extended-state="6" />
+    <frame x="-7" y="-7" width="1453" height="873" extended-state="7" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12884752" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13171081" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -402,8 +388,8 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Main_Project$V_UpBook.coverage" NAME="V_UpBook Coverage Results" MODIFIED="1562045198521" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/V_windows/V_adminEntrance" />
-    <SUITE FILE_PATH="coverage/Main_Project$V_Home.coverage" NAME="V_Home Coverage Results" MODIFIED="1562045899872" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/V_windows" />
-    <SUITE FILE_PATH="coverage/Main_Project$TcpHoster.coverage" NAME="TcpHoster Coverage Results" MODIFIED="1562045628144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/M_Hoster/TCP-Hoster" />
+    <SUITE FILE_PATH="coverage/Main_Project$V_Home.coverage" NAME="V_Home Coverage Results" MODIFIED="1562050758420" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/V_windows" />
+    <SUITE FILE_PATH="coverage/Main_Project$TcpHoster.coverage" NAME="TcpHoster Coverage Results" MODIFIED="1562050753041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/M_Hoster/TCP-Hoster" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/VC_windowsControl/VC_AdminEntranceControl.py">
@@ -490,32 +476,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/M_Hoster/TCP-Hoster/TcpHoster.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="157" column="25" lean-forward="true" selection-start-line="157" selection-start-column="25" selection-end-line="157" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/V_windows/V_readerEntrance/V_BorrowOrReturnBook.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="62" column="37" lean-forward="true" selection-start-line="62" selection-start-column="37" selection-end-line="62" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VC_windowsControl/VC_BorrowOrReturnBook.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#52#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/M_Hoster/M_Control/MC_BorrowOrReturnBook.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -578,6 +538,45 @@
         <state>
           <folding>
             <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/M_Hoster/TCP-Hoster/TcpHoster.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="657">
+          <caret line="157" column="25" selection-start-line="157" selection-start-column="25" selection-end-line="157" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VC_windowsControl/VC_BorrowOrReturnBook.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/V_windows/V_readerEntrance/V_BorrowOrReturnBook.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/V_windows/V_readerEntrance/V_SignIn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="15" lean-forward="true" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
