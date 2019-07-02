@@ -11,45 +11,54 @@ class MC_UpBook:
         sql = self.creater.searchIfIsbnExist(isbn)
         sqlList = [sql]
         ret = self.runner.beginSql(sqlList)
+        if ret : ##书籍存在
+            return '1'
+        else:
+            ##不存在返回书架信息
+            sql = self.creater.getAvailableShelf()
+            sqlList = [sql]
+            ret = self.runner.beginSql(sqlList)
         return ret
 
     def getNextBookId(self):
         sql = self.creater.getNextBookId()
-        sqlList = [sql]
-        ret = self.runner.beginSql(sqlList)
-        return ret
-
-    def getShelfMessage(self):
-        sql = self.creater.getAvailableShelf()
-        sqlList = [sql]
-        ret = self.runner.beginSql(sqlList)
+        sqlList = []
+        sqlList.append(sql)
+        ret = self.runner.beginSql(sqlList)[0][0]
         return ret
 
     def addNewBook_exist(self,infoList):
         sqlList = []
-        isbn = infoList[1]
-        operId = infoList[2]
-        shelfId = infoList[3]
-        bookId = self.getNextBookId()
+        isbn = infoList[0]
+        operId = infoList[1]
+        bookId = str(self.getNextBookId() +1)
+
         sqlList.append(self.creater.changeBookStock(isbn))
-        sqlList.append(self.creater.upBook(operId, isbn, shelfId, bookId))
+        sqlList += self.creater.upBook(operId, isbn, bookId)
         status = self.runner.beginSql(sqlList)
-        if status is not 'ERROR':
-            return '1'
+        if status is '1':
+            return bookId
+        else:
+            return '0'
 
     def addNewBook_notexist(self,infoList):
-        isbn = infoList[1]
-        bookName = infoList[2]
-        bookAuthor = infoList[3]
-        bookPublisher = infoList[4]
-        bookPrice = infoList[5]
-        bookCreateTime = infoList[6]
-        operId = infoList[7]
-        shelfId = infoList[8]
-        bookId = self.getNextBookId()
-        sqlList = []
-        sqlList.append(self.creater.addNewIsbn(isbn,bookName,bookAuthor,bookPublisher,bookPrice,bookCreateTime,bookMaxNum,bookAvailableNum,bookSaleNumber))
-        sqlList.append(self.creater.upBook(operId,isbn,shelfId,bookId))
+        creater = Acon_UpBook()
+        isbn = infoList[0]
+        bookName = infoList[1]
+        bookAuthor = infoList[2]
+        bookPublisher = infoList[3]
+        bookPrice = infoList[4]
+        bookCreateTime = infoList[5]
+        operId = infoList[6]
+        shelfId = infoList[7]
+        bookId = str(self.getNextBookId() +1 )
+        sqlList = creater.addNewIsbn(isbn, shelfId, bookName, bookAuthor, bookPublisher, bookPrice, bookCreateTime)
+        sqlList += self.creater.upBook(operId, isbn, bookId)
         status = self.runner.beginSql(sqlList)
-        if status is not 'ERROR':
-            return '1'
+
+        #添加成功 返回bookId
+        if status is  '1':
+            return bookId
+        else:
+            return '0'
+

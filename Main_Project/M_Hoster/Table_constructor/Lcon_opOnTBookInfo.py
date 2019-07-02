@@ -3,7 +3,7 @@ class Lcon_opOnBookInfo():
     def add(self, bookid,bookIsbn):
         self.sql = ''
         self.sql += "insert into t_bookinfo set bookid = " + bookid
-        self.sql += ",bookIsbn = " + bookIsbn
+        self.sql += ",isbn = " + bookIsbn
         self.sql += ";"
 
         return self.sql

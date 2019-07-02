@@ -1,12 +1,12 @@
 from tkinter import *
 
 class V_SearchNormal():
-    def __init__(self,father):
-        self.father = father
+    def __init__(self):
+        self.locate = '+400+200'
         self.root = Tk()
         self.root.title('SEARCHNORMAL')
         self.root.geometry('400x200')
-        self.root.geometry(self.father.locate)
+        self.root.geometry(self.locate)
         self.root.resizable(0,0)
 
         labelBlank1 = Label(self.root)
@@ -35,5 +35,5 @@ class V_SearchNormal():
         mainloop()
 
     def returnFather(self):
-        self.father.showThisWindow()
+        self.root.quit()
         self.root.destroy()

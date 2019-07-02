@@ -1,14 +1,14 @@
 from tkinter import *
 from tkinter import ttk
-
+from VC_windowsControl.VC_SearchReader import VC_SearchReader
 class V_SearchReader:
 
-    def __init__(self,father):
-        self.father = father
+    def __init__(self):
+        self.locate = '+400+200'
         self.root = Tk()
         self.root.title('SearchReader')
-        self.root.geometry('400x420')
-        self.root.geometry(self.father.locate)
+        self.root.geometry('500x420')
+        self.root.geometry(self.locate)
         self.root.resizable(0,0)
 
         frameLine = Frame(self.root)
@@ -16,33 +16,36 @@ class V_SearchReader:
         frameTreeView = Frame(self.root)
         frameTreeView.pack(side=TOP)
 
-        labelReaderNumber = Label(frameLine, text='Input reader number:')
-        self.__stringVarReaderNumber = StringVar()
-        entryReaderNumber = Entry(frameLine, textvariable = self.__stringVarReaderNumber)
-        buttonSearch = Button(frameLine, text='查询')
-        buttonCancel = Button(frameLine, text='返回', command = self.returnFather)
-        labelReaderNumber.pack(side = LEFT)
-        entryReaderNumber.pack(side = LEFT)
-        buttonSearch.pack(side = LEFT)
-        buttonCancel.pack(side = LEFT)
+        columns = ("读者号", "姓名", "性别", "联系方式","信誉积分")
+        self.tv = ttk.Treeview(frameTreeView, height=18, show="headings", columns=columns)
 
-        columns = ("读者号", "姓名", "联系方式", "是否逾期")
-        tv = ttk.Treeview(frameTreeView, height=18, show="headings", columns=columns)
+        self.tv.column("读者号", width=90, anchor='center')
+        self.tv.column("姓名", width=100, anchor='center')
+        self.tv.column("性别", width=100, anchor='center')
+        self.tv.column("联系方式", width=100, anchor='center')
+        self.tv.column("信誉积分", width=100, anchor='center')
 
-        tv.column("读者号", width=90, anchor='center')
-        tv.column("姓名", width=100, anchor='center')
-        tv.column("联系方式", width=100, anchor='center')
-        tv.column("是否逾期", width=100, anchor='center')
+        self.tv.heading("读者号", text="读者号")  # 显示表头
+        self.tv.heading("姓名", text="姓名")
+        self.tv.heading("性别", text="性别")
+        self.tv.heading("联系方式", text="联系方式")
+        self.tv.heading("信誉积分", text="信誉积分")
 
-        tv.heading("读者号", text="读者号")  # 显示表头
-        tv.heading("姓名", text="姓名")
-        tv.heading("联系方式", text="联系方式")
-        tv.heading("是否逾期", text="是否逾期")
+        self.tv.grid(row=1, columnspan=6, padx=1, pady=1)
 
-        tv.grid(row=1, columnspan=6, padx=1, pady=1)
-
+        self.beginSearch()
         mainloop()
 
+    def beginSearch(self):
+        vc = VC_SearchReader()
+        ret = vc.beginSearchReader()
+        for i in ret:
+            self.setTreeView(i)
+
+    def setTreeView(self,list):
+        self.tv.insert('', 'end', values=list)
+
     def returnFather(self):
-        self.father.showThisWindow()
+        self.root.quit()
         self.root.destroy()
+

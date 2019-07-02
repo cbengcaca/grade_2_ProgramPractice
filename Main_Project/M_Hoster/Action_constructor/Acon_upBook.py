@@ -16,36 +16,39 @@ class Acon_UpBook:
 
     #isbn已存在
     def changeBookStock(self,isbn):
-        sqlChange = "update t_isbninfo set bookMaxNum = bookMaxNum + 1 where "
+        sqlChange = "update t_isbninfo set bookMaxNum = bookMaxNum + 1 , bookAvailableNum = bookAvailableNum+1 where "
         sqlChange += "isbn = " + isbn
         return sqlChange
 
     #isbn新添加
-    def addNewIsbn(self,isbn, bookName, bookAuthor, bookPublisher, bookPrice, bookCreateTime,bookMaxNum, bookAvailableNum, bookSaleNumber):
+    def addNewIsbn(self,isbn, shelfid,bookName, bookAuthor, bookPublisher, bookPrice, bookCreateTime,bookMaxNum='1', bookAvailableNum='0', bookSaleNumber='0'):
         isbninfoCreater = Lcon_opOnISBNInfo()
 
         sqlIsbninfo = isbninfoCreater.add(isbn, bookName, bookAuthor, bookPublisher, bookPrice, bookCreateTime,bookMaxNum, bookAvailableNum, bookSaleNumber)
-        return sqlIsbninfo
+
+        # isbn所在书架信息
+        shelfCreater = Lcon_opOnTISBNAndShelf()
+        sqlShelfinfo = shelfCreater.add(isbn, shelfid)
+
+        sqlList = [sqlIsbninfo,sqlShelfinfo]
+        return sqlList
 
     #获取可用书架信息
     def getAvailableShelf(self):
-        sqlGetAvailableShelf = "SELECT * from t_shelflocate"
+        sqlGetAvailableShelf = "SELECT * from t_shelfLocate"
         return sqlGetAvailableShelf
 
-    def upBook(self,operId,isbn,shelfid,bookid):
+    def upBook(self,operId,isbn,bookid):
         #书本信息
         bookinfoCreater = Lcon_opOnBookInfo()
         sqlBookinfo = bookinfoCreater.add(bookid,isbn)
 
-        #isbn所在书架信息
-        shelfCreater = Lcon_opOnTISBNAndShelf()
-        sqlShelfinfo = shelfCreater.add(isbn,shelfid)
 
         #操作记录信息
         bookChange = Lcon_opOnTBookChange()
         sqlBookChange = bookChange.add("upBook",operId,bookid)
 
-        sqlList = [sqlBookinfo,sqlShelfinfo,sqlBookChange]
+        sqlList = [sqlBookinfo,sqlBookChange]
         return sqlList
 
 

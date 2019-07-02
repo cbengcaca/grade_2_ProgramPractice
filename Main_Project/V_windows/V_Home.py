@@ -2,8 +2,6 @@ from tkinter import *
 from V_windows.V_search.V_SearchMain import V_Search
 from V_windows.V_readerEntrance.V_ReaderEntrance import V_ReaderEntrance
 from V_windows.V_adminEntrance.V_AdminEntrance import V_AdminEntrance
-import win32gui,win32con
-
 
 class V_Home():
     def __init__(self):
@@ -44,29 +42,17 @@ class V_Home():
 
 
     def openSearchEntrance(self):
-        self.hideThisWindow()
-        searchEntrance = V_Search(self)
+        searchEntrance = V_Search()
         return
 
     def openReaderWindow(self):
-        self.hideThisWindow()
-        readerEntrance = V_ReaderEntrance(self)
+        readerEntrance = V_ReaderEntrance()
         return
 
     def openAdminWindow(self):
-        self.hideThisWindow()
-        adminEntrance = V_AdminEntrance(self)
+        adminEntrance = V_AdminEntrance()
         return
 
-
-    def getWindowHandle(self):
-        return win32gui.FindWindow(None, self.root.title())
-
-    def showThisWindow(self):
-        win32gui.ShowWindow(self.getWindowHandle(), win32con.SW_SHOW)
-
-    def hideThisWindow(self):
-        win32gui.ShowWindow(self.getWindowHandle(), win32con.SW_HIDE)
 
 
 a = V_Home()

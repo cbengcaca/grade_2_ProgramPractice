@@ -6,11 +6,11 @@ class Lcon_opOnISBNInfo:
         self.sql += "isbn = '" + isbn + "'"
         self.sql += ",bookName = '" + bookName + "'"
         self.sql += ",bookAuthor = '" + bookAuthor + "'"
-        self.sql += ",bookPulisher = '" + bookPublisher + "'"
+        self.sql += ",bookPublisher = '" + bookPublisher + "'"
         self.sql += ",bookPrice = '" + bookPrice + "'"
-        self.sql += ",bookCreateTime = '" + bookCreateTime + "'"
+        self.sql += ",bookCreateTime = str_to_date('" + bookCreateTime + "', '%m/%d/%y')"
         self.sql += ",bookMaxNum = '" + bookMaxNum + "'"
-        self.sql += ",bookAviliable = '" + bookAviliableNum + "'"
+        self.sql += ",bookAvailableNum = '" + bookAviliableNum + "'"
         self.sql += ",bookSaleNumber = '" + bookSaleNumber + "'"
         return self.sql
 

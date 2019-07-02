@@ -4,10 +4,9 @@ from V_windows.V_readerEntrance.V_BorrowOrReturnBook import V_BorrowOrReturnBook
 import win32gui,win32con
 
 class V_ReaderEntrance():
-    def __init__(self,father):
-        self.size = father.size
-        self.locate = father.locate
-        self.father = father
+    def __init__(self):
+        self.size = '400x200'
+        self.locate = '+400+200'
         self.root = Tk()
         self.root.title('READER ENTRANCE')
         self.root.geometry(self.size)
@@ -36,30 +35,17 @@ class V_ReaderEntrance():
         mainloop()
 
     def openBookBuy(self):
-        self.hideThisWindow()
-        bookBuy = V_BuyBook(self)
+        bookBuy = V_BuyBook()
         return
 
     def openBookBorrow(self):
-        self.hideThisWindow()
-        borrowOrReturn = V_BorrowOrReturnBook(0,self)
+        borrowOrReturn = V_BorrowOrReturnBook(0)
         return
 
     def openBookReturn(self):
-        self.hideThisWindow()
-        borrowOrReturn = V_BorrowOrReturnBook(1,self)
+        borrowOrReturn = V_BorrowOrReturnBook(1)
         return
 
     def returnFather(self):
-        self.father.showThisWindow()
+        self.root.quit()
         self.root.destroy()
-
-
-    def getWindowHandle(self):
-        return win32gui.FindWindow(None, self.root.title())
-
-    def showThisWindow(self):
-        win32gui.ShowWindow(self.getWindowHandle(), win32con.SW_SHOW)
-
-    def hideThisWindow(self):
-        win32gui.ShowWindow(self.getWindowHandle(), win32con.SW_HIDE)

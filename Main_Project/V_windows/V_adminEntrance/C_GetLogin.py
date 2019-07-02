@@ -39,9 +39,7 @@ class V_Login:
         frameButton = Frame(self.root)
         frameButton.pack(side = TOP)
         buttonConfirm = Button(frameButton,text = 'COMFIRM',command = self.sendOutInput)
-        buttonCancle = Button(frameButton,text = 'CANCLE',command = self.root.quit)
         buttonConfirm.pack(side = LEFT)
-        buttonCancle.pack(side = RIGHT)
 
         mainloop()
 
@@ -57,6 +55,7 @@ class V_Login:
         self.root.destroy()
         return
 
+
 class C_GetLogin():
     def __init__(self):
         self.__logKey = ['','']
@@ -68,3 +67,4 @@ class C_GetLogin():
     def getLogin(self):
         v = V_Login(self)
         return self.__logKey
+

@@ -1,52 +1,70 @@
 from tkinter import *
-import tkinter.messagebox
-
+from tkinter import messagebox
+from VC_windowsControl.VC_UpBook import VC_UpBook
+from V_windows.V_adminEntrance.V_getIsbn import V_getIsbn
+from  tkinter import ttk
 class V_UpBook():
 
-    def __init__(self,father):
-
-        self.father = father
-        self.root = Tk()
+    def __init__(self,id):
+        self.locate = '+200+200'
+        self.isbn = ''
+        self.operId = id
+        self.root = Toplevel()
         self.root.title('UpBook')
-        self.root.geometry('400x500')
-        self.root.geometry(self.father.locate)
-        self.root.resizable(0,0)
+        self.root.geometry('500x600')
+        self.root.geometry(self.locate)
+        self.root.resizable(0, 0)
 
         labelBlank1 = Label(self.root)
         labelBlank1.pack(side = TOP)
 
+        self.tree = ttk.Treeview(self.root,show="headings",height = 100 ,columns = ("ShelfId","ShelfLocate") )
+        self.tree.column("ShelfId", width=100,anchor='center')  # 表示列,不显示
+        self.tree.column("ShelfLocate", width=100,anchor='center')
+
+        self.tree.heading("ShelfId", text="ShelfId")  # 显示表头
+        self.tree.heading("ShelfLocate", text="ShelfLocate")
+
+        self.tree.pack(side = LEFT)
+
         labelInputTip = Label(self.root,text = 'Input Here:')
         labelInputTip.pack(side = TOP)
 
+        self.stringName = StringVar()
         labelBookName = Label(self.root,text = 'BookName:')
         labelBookName.pack(side = TOP)
-        entryInput1 = Entry(self.root)
+        entryInput1 = Entry(self.root,textvariable = self.stringName)
         entryInput1.pack(side = TOP)
 
-        labelBookNumber = Label(self.root,text = 'BookNumber:')
-        labelBookNumber.pack(side = TOP)
-        entryInput2 = Entry(self.root)
-        entryInput2.pack(side = TOP)
+        self.stringAuthor = StringVar()
+        labelBookAuthor = Label(self.root, text='BookAuthor:')
+        labelBookAuthor.pack(side=TOP)
+        entryInput3 = Entry(self.root , textvariable = self.stringAuthor)
+        entryInput3.pack(side=TOP)
 
-        labelBookAuthor = Label(self.root,text = 'BookAuthor:')
-        labelBookAuthor.pack(side = TOP)
-        entryInput3 = Entry(self.root)
-        entryInput3.pack(side = TOP)
+        self.stringPublisher = StringVar()
+        labelBookPublisher = Label(self.root, text='BookPublisher:')
+        labelBookPublisher.pack(side=TOP)
+        entryInput4 = Entry(self.root,textvariable = self.stringPublisher)
+        entryInput4.pack(side=TOP)
 
-        labelBookPublisher = Label(self.root,text = 'BookPublisher:')
-        labelBookPublisher.pack(side = TOP)
-        entryInput4 = Entry(self.root)
-        entryInput4.pack(side = TOP)
+        self.stringPrice = StringVar()
+        labelBookPublisher = Label(self.root, text='BookPrice:')
+        labelBookPublisher.pack(side=TOP)
+        entryInput5 = Entry(self.root,textvariable = self.stringPrice)
+        entryInput5.pack(side=TOP)
 
-        labelBookLocation = Label(self.root,text = 'BookLocation:')
+        self.stringCreateTime = StringVar()
+        labelBookPublisher = Label(self.root, text='BookCreateTime:')
+        labelBookPublisher.pack(side=TOP)
+        entryInput6 = Entry(self.root,textvariable = self.stringCreateTime)
+        entryInput6.pack(side=TOP)
+
+        self.stringLocate = StringVar()
+        labelBookLocation = Label(self.root,text = 'BookLocation:\nPlease devide by whiteSpace' )
         labelBookLocation.pack(side = TOP)
-        entryInput5 = Entry(self.root)
-        entryInput5.pack(side = TOP)
-
-        labelInTime = Label(self.root,text = 'InTime:')
-        labelInTime.pack(side = TOP)
-        entryInput6 = Entry(self.root)
-        entryInput6.pack(side = TOP)
+        entryInput7 = Entry(self.root,textvariable = self.stringLocate)
+        entryInput7.pack(side = TOP)
 
         labelBlank2 = Label(self.root)
         labelBlank2.pack(side = TOP)
@@ -54,9 +72,9 @@ class V_UpBook():
         frameOkCancle = Frame(self.root)
         frameOkCancle.pack(side = TOP)
 
-        buttonConfirm = Button(frameOkCancle,text = 'Confirm',command = self.popup)
+        buttonConfirm = Button(frameOkCancle,text = 'Confirm',command = self.addNewBookNotExist)
         buttonConfirm.pack(side = LEFT)
-        buttonCancle = Button(frameOkCancle,text = 'Cancle')
+        buttonCancle = Button(frameOkCancle,text = 'SearchIsbn',command = self.getIsbn)
         buttonCancle.pack(side = RIGHT)
 
         labelBlankLast = Label(self.root)
@@ -66,12 +84,67 @@ class V_UpBook():
         buttonReturn.pack(side=BOTTOM)
 
         mainloop()
+        #
+        # isbn = infoList[1]
+        # bookName = infoList[2]
+        # bookAuthor = infoList[3]
+        # bookPublisher = infoList[4]
+        # bookPrice = infoList[5]
+        # bookCreateTime = infoList[6]
+        # operId = infoList[7]
+        # shelfId = infoList[8]
 
-    def popup(self):
-        tkinter.messagebox.showinfo('提示', '上架成功')
+    def getIsbn(self):
+        x = self.tree.get_children()
+        for item in x:
+            self.tree.delete(item)
+        vc = VC_UpBook()
+        getIsbn = V_getIsbn(self)
+        infoList = ['4', self.isbn]
+        #查询isbn是否存在
+        #存在返回1
+        #不存在返回书架信息
+        ret = vc.searchIsbnExist(infoList)
+
+        if ret is '1':##isbn存在
+            infoList = ['4.1', self.isbn, self.operId]
+            ##获得最新的bookid
+            bookId = vc.addBookExist(infoList)
+            if bookId is not '0':
+                messagebox.showinfo(message= 'newBookId is '+ bookId)
+            else:
+                messagebox.showerror(message= 'add Failed')
+            return
+        else: ##isbn不存在
+            for list in ret:
+                self.setTreeView(list)
+
+    def setIsbn(self,isbn):
+        self.isbn = isbn
+
+    def setTreeView(self,list):
+        self.tree.insert('', 'end', values = list)
+
+    def addNewBookNotExist(self):
+        infoList = ['4.0']
+        infoList.append(self.isbn)
+
+        infoList.append(self.stringName.get())
+        infoList.append(self.stringAuthor.get())
+        infoList.append(self.stringPublisher.get())
+        infoList.append(self.stringPrice.get())
+        infoList.append(self.stringCreateTime.get())
+        infoList.append(self.operId)
+        infoList.append(self.stringLocate.get())
+        vc = VC_UpBook()
+        bookId = vc.addBookNotExist(infoList)
+        if bookId is not '0':
+            messagebox.showinfo(message='newBookId is ' + bookId)
+        else:
+            messagebox.showerror(message='add Failed')
 
     def returnFather(self):
-        self.father.showThisWindow()
+        self.root.quit()
         self.root.destroy()
 
 

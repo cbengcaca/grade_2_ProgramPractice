@@ -2,9 +2,8 @@ from tkinter import *
 from PIL import Image, ImageTk
 import qrcode
 class V_BuyBook:
-    def __init__(self,father):
-        self.father = father
-        self.locate = father.locate
+    def __init__(self):
+        self.locate = '+400+200'
         self.root = Tk()            #创建顶级窗口
         self.root.title('买书')       #设置窗口题目
         self.root.geometry('400x200') #设置买书窗口大小
@@ -45,5 +44,5 @@ class V_BuyBook:
         Label(top, image = self.__imagePay).pack(anchor = CENTER)
 
     def returnFather(self):
-        self.father.showThisWindow()
+        self.root.quit()
         self.root.destroy()

@@ -6,13 +6,17 @@ from M_Hoster.M_Control.MC_devideWords import MC_devideWords
 from M_Hoster.M_Control.MC_upBook import MC_UpBook
 from M_Hoster.M_Control.MC_adminLogin import MC_AdminLogin
 from M_Hoster.M_Control import MC_BorrowOrReturnBook
+from M_Hoster.M_Control.MC_devideWords import MC_devideWords
+from M_Hoster.M_Control.MC_upBook import MC_UpBook
+from M_Hoster.M_Control.MC_adminLogin import MC_AdminLogin
+from M_Hoster.M_Control.MC_searchReader import MC_SearchReader
 from M_Hoster.M_Control import MC_SignIn
 import time
 class TcpHoster(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
         self.flag = True
-        self.host = '192.168.56.1'
+        self.host = '10.240.224.173'
         self.port = 4700
         self.buf = 1024
         self.addr = (self.host, self.port)
@@ -74,22 +78,45 @@ class TcpHoster(threading.Thread):
                     elif recKeyWords[0] == '4':
                         bookUper = MC_UpBook()
                         ret = bookUper.searchIfIsbnExist(recKeyWords)
-                        if ret:  #isbn存在
-                            print("isbn is exist")
-                            cs.sendall(bytes("1",'utf-8'))
+                        if ret is '1':  ##isbn不存在
+                            cs.sendall(bytes("1", 'utf-8'))
                         else:
-                            print("isbn is not exist")
-                            cs.sendall(bytes("0",'utf-8'))
+                            for singleLine in ret:
+                                print(singleLine)
+                                singleLineChangeToStr = ','.join([str(i) for i in singleLine])
+                                print(singleLineChangeToStr)
+                                cs.sendall(bytes(singleLineChangeToStr, 'utf-8'))
+                                time.sleep(0.1)
 
+                    ###isbn已存在
                     elif recKeyWords[0] == '4.1':
                         bookUper = MC_UpBook()
-                        ret = bookUper.addNewBook_exist(recKeyWords)
+                        bookId = bookUper.addNewBook_exist(recKeyWords[1:])
+                        cs.sendall(bytes(bookId, 'utf-8'))
+                        time.sleep(0.1)
 
+                    ###isbn不存在
                     elif recKeyWords[0] == '4.0':
                         bookUper = MC_UpBook()
-                        ret = bookUper.addNewBook_notexist(recKeyWords)
+                        bookId = bookUper.addNewBook_notexist(recKeyWords[1:])
+                        cs.sendall(bytes(bookId, 'utf-8'))
+                        time.sleep(0.1)
 ################上架毕
-
+################查读
+                    if recKeyWords[0] == '6':
+                        searchReader = MC_SearchReader()
+                        ret = searchReader.searchReader()
+                        if ret:
+                            for singleLine in ret:
+                                print(singleLine)
+                                singleLineChangeToStr = ','.join([str(i) for i in singleLine])
+                                print(singleLineChangeToStr)
+                                cs.sendall(bytes(singleLineChangeToStr, 'utf-8'))
+                                time.sleep(0.1)
+                        else:
+                            cs.sendall(bytes('0', 'utf-8'))
+                            time.sleep(0.1)
+################查读毕
 ################还书
                     elif recKeyWords[0] == '9':
                         a = MC_BorrowOrReturnBook.MC_BorrowOrReturnBook()

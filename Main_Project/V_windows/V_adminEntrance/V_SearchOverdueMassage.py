@@ -3,12 +3,12 @@ from tkinter import ttk
 
 class V_SearchOverdueMassage:
 
-    def __init__(self,father):
-        self.father = father
+    def __init__(self):
+        self.locate = '+400+200'
         self.root = Tk()
         self.root.title('SearchBorrowMassage')
         self.root.geometry('400x420')
-        self.root.geometry(self.father.locate)
+        self.root.geometry(self.locate)
         self.root.resizable(0,0)
 
         frameTreeView = Frame(self.root)
@@ -39,5 +39,5 @@ class V_SearchOverdueMassage:
         mainloop()
 
     def returnFather(self):
-        self.father.showThisWindow()
+        self.root.quit()
         self.root.destroy()

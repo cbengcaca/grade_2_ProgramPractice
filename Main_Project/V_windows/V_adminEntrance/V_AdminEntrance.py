@@ -9,24 +9,18 @@ from VC_windowsControl.VC_AdminEntranceControl import VC_AdminEntranceControl
 from V_windows.V_adminEntrance.C_GetLogin import C_GetLogin
 import win32con,win32gui
 class V_AdminEntrance():
-    def __init__(self,father):
-        self.father = father
+    def __init__(self):
         self.root = Tk()
-        logWindow = C_GetLogin()
-        self.logKey = []
-        self.logKey = logWindow.getLogin()
-        self.logKey.insert(0,'9')
-        controler = VC_AdminEntranceControl()
-        result = controler.getLogKeyToCompare(self.logKey)
-        if result[0] is '0':
-            self.returnFather()
+        self.id = ''
+        self.pwd = ''
 
-        self.locate = father.locate
-        self.size = father.size
+
+        self.locate = '+400+200'
+        self.size = '500x300'
 
         self.root.title('ADMIN ENTRANCE')
-        self.root.geometry(self.father.size)
-        self.root.geometry(self.father.locate)
+        self.root.geometry(self.size)
+        self.root.geometry(self.locate)
         self.root.resizable(0,0)
 
 
@@ -59,54 +53,63 @@ class V_AdminEntrance():
         labelBlankLast = Label(self.root)
         labelBlankLast.pack(side=BOTTOM)
 
-        buttonReturn = Button(self.root, text='RETURN', command=self.destoryAndReturn, font='Consoles')
-        buttonReturn.pack(side=BOTTOM)
+        buttonFrame = Frame(self.root)
+        buttonFrame.pack(side = BOTTOM)
+        buttonLogin = Button(buttonFrame,text = "LOGIN", command = self.adminLogin, font = 'Consoles')
+        buttonLogin.pack(side = LEFT)
+        buttonReturn = Button(buttonFrame, text='return', command=self.selfDestory, font='Consoles')
+        buttonReturn.pack(side= LEFT)
 
         mainloop()
 
     def openBookUp(self):
-        self.hideThisWindow()
-        bookUp = V_UpBook(self)
+        bookUp = V_UpBook(self.id)
         return
 
     def openBookDown(self):
-        self.hideThisWindow()
-        bookDown = V_DownBook(self)
+        bookDown = V_DownBook()
         return
 
     def openSearchReader(self):
-        self.hideThisWindow()
-        searchReader = V_SearchReader(self)
+        searchReader = V_SearchReader()
         return
 
     def openSearchBorrow(self):
-        self.hideThisWindow()
-        searchBorrow = V_SearchBorrowMassage(self)
+        searchBorrow = V_SearchBorrowMassage()
         return
 
     def openSearchOver(self):
-        self.hideThisWindow()
-        searchOver = V_SearchOverdueMassage(self)
+        searchOver = V_SearchOverdueMassage()
         return
 
-    def returnFather(self):
-        self.father.showThisWindow()
+    def adminLogin(self):
+        if self.id is not '':
+            messagebox.showerror(message= 'Is already login')
+            return
+        else:
+            logWindow = C_GetLogin()
+            self.logKey = []
+            self.logKey = logWindow.getLogin()
+
+            if self.logKey[0] == '' or self.logKey[1] == '':
+                self.selfDestory()
+                return
+
+            self.logKey.insert(0, '11')
+            controler = VC_AdminEntranceControl()
+            result = controler.getLogKeyToCompare(self.logKey)
+            if result[0] is '0':
+                self.selfDestory()
+                return
+            else:
+                self.id = self.logKey[1]
+                self.pwd = self.logKey[2]
+                self.root.title(self.logKey[1])
 
     def selfDestory(self):
         self.root.quit()
         self.root.destroy()
 
-    def destoryAndReturn(self):
-        self.returnFather()
-        self.selfDestory()
 
-#win32
-    def getWindowHandle(self):
-        return win32gui.FindWindow(None,self.root.title())
 
-    def showThisWindow(self):
-        win32gui.ShowWindow(self.getWindowHandle(),win32con.SW_SHOW)
-
-    def hideThisWindow(self):
-        win32gui.ShowWindow(self.getWindowHandle(),win32con.SW_HIDE)
 

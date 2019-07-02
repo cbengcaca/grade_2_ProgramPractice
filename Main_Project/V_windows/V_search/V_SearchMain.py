@@ -3,10 +3,9 @@ from V_windows.V_search.V_SearchNormal import V_SearchNormal
 from V_windows.V_search.V_SearchPlus import V_SearchPlus
 import win32con,win32gui
 class V_Search():
-    def __init__(self,father):
-        self.father = father
-        self.size = father.size
-        self.locate = father.locate
+    def __init__(self):
+        self.size = '400x200'
+        self.locate = '+400+200'
         self.root = Tk()
         self.root.title('SEARCH')
         self.root.geometry(self.size)
@@ -34,28 +33,16 @@ class V_Search():
 
 
     def openSearchPlus(self):
-        self.hideThisWindow()
-        V_searchPlusNew = V_SearchPlus(self)
+        V_searchPlusNew = V_SearchPlus()
         return
 
     def openSearchNormal(self):
-        self.hideThisWindow()
-        V_searchNormalNew = V_SearchNormal(self)
+        V_searchNormalNew = V_SearchNormal()
         return
 
     def returnFather(self):
-        self.father.showThisWindow()
+        self.root.quit()
         self.root.destroy()
-
-    def getWindowHandle(self):
-        return win32gui.FindWindow(None,self.root.title())
-
-    def showThisWindow(self):
-        win32gui.ShowWindow(self.getWindowHandle(),win32con.SW_SHOW)
-
-    def hideThisWindow(self):
-        win32gui.ShowWindow(self.getWindowHandle(),win32con.SW_HIDE)
-
 
 
 

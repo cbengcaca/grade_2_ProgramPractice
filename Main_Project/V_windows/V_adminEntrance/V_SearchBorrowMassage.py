@@ -3,12 +3,11 @@ from tkinter import ttk
 
 class V_SearchBorrowMassage:
 
-    def __init__(self,father):
-        self.father = father
+    def __init__(self):
         self.root = Tk()
         self.root.title('SearchBorrowMassage')
         self.root.geometry('400x420')
-        self.root.geometry(self.father.locate)
+        self.root.geometry(self.locate)
         self.root.resizable(0,0)
 
         frameLine = Frame(self.root)
@@ -45,5 +44,5 @@ class V_SearchBorrowMassage:
 
 
     def returnFather(self):
-        self.father.showThisWindow()
+        self.root.quit()
         self.root.destroy()
