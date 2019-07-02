@@ -3,8 +3,8 @@ from M_Hoster.M_SqlRunner.M_SqlRunner import M_SqlRunner
 class MC_devideWords:
     def devideWords(self,searchList):
         sqlCreate = Acon_devideWordsOp()
-        sql = Acon_devideWordsOp.setSearch(searchList)
-
+        sql = sqlCreate.setSearch(searchList)
+        sqlList = [sql]
         sqlRunner = M_SqlRunner()
-        ret = sqlRunner.beginSql(sql)
+        ret = sqlRunner.beginSql(sqlList)
         return ret
