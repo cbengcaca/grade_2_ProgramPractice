@@ -9,12 +9,13 @@ from M_Hoster.M_Control.MC_upBook import MC_UpBook
 from M_Hoster.M_Control.MC_adminLogin import MC_AdminLogin
 from M_Hoster.M_Control.MC_searchReader import MC_SearchReader
 from M_Hoster.M_Control import MC_SignIn
+from M_Hoster.M_Control.MC_SearchBorrowMassage import MC_SearchBorrowMassage
 import time
 class TcpHoster(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
         self.flag = True
-        self.host = '10.240.224.173'
+        self.host = '10.240.59.109'
         self.port = 4700
         self.buf = 1024
         self.addr = (self.host, self.port)
@@ -116,6 +117,18 @@ class TcpHoster(threading.Thread):
                             cs.sendall(bytes('0', 'utf-8'))
                             time.sleep(0.1)
 ################查读毕
+
+################查借阅7
+                    if recKeyWords[0] == '7':
+                        searchBorrow = MC_SearchBorrowMassage()
+                        ret = searchBorrow.getSearchBorrow()
+                        if ret:
+                            for singleLine in ret:
+                                print(singleLine)
+                                singleLineChangeToStr = ','.join([str(i) for i in singleLine])
+                                print(singleLineChangeToStr)
+                                cs.sendall(bytes(singleLineChangeToStr, 'utf-8'))
+                                time.sleep(0.1)
 ################还书
                     elif recKeyWords[0] == '9':
                         a = MC_BorrowOrReturnBook.MC_BorrowOrReturnBook()

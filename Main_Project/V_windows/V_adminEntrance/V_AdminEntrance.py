@@ -3,7 +3,6 @@ from tkinter import messagebox
 from V_windows.V_adminEntrance.V_DownBook import V_DownBook
 from V_windows.V_adminEntrance.V_UpBook import V_UpBook
 from V_windows.V_adminEntrance.V_SearchBorrowMassage import V_SearchBorrowMassage
-from V_windows.V_adminEntrance.V_SearchOverdueMassage import V_SearchOverdueMassage
 from V_windows.V_adminEntrance.V_SearchReader import V_SearchReader
 from VC_windowsControl.VC_AdminEntranceControl import VC_AdminEntranceControl
 from V_windows.V_adminEntrance.C_GetLogin import C_GetLogin
@@ -47,8 +46,8 @@ class V_AdminEntrance():
         buttonSearchReader.pack(side = LEFT)
         buttonSearchBorrowList = Button(frameButtonAdminWork,text = 'SEARCH BORROW',command = self.openSearchBorrow,font='Consoles')
         buttonSearchBorrowList.pack(side = LEFT)
-        buttonSearchOverTime = Button(frameButtonAdminWork,text = 'SEARCH OVERTIME',command = self.openSearchOver,font='Consoles')
-        buttonSearchOverTime.pack(side = LEFT)
+        # buttonSearchOverTime = Button(frameButtonAdminWork,text = 'SEARCH OVERTIME',command = self.openSearchOver,font='Consoles')
+        # buttonSearchOverTime.pack(side = LEFT)
 
         labelBlankLast = Label(self.root)
         labelBlankLast.pack(side=BOTTOM)
@@ -78,9 +77,6 @@ class V_AdminEntrance():
         searchBorrow = V_SearchBorrowMassage()
         return
 
-    def openSearchOver(self):
-        searchOver = V_SearchOverdueMassage()
-        return
 
     def adminLogin(self):
         if self.id is not '':
