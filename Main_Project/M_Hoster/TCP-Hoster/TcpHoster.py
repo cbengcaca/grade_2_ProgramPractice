@@ -12,6 +12,7 @@ from M_Hoster.M_Control import MC_SignIn
 from M_Hoster.M_Control.MC_SearchBorrowMassage import MC_SearchBorrowMassage
 from M_Hoster.M_Control.MC_SearchNormal import MC_SearchNormal
 from M_Hoster.M_Control.MC_downBook import MC_downBook
+from M_Hoster.M_Control.MC_BuyBook import MC_BuyBook
 import time
 class TcpHoster(threading.Thread):
     def __init__(self):
@@ -63,7 +64,33 @@ class TcpHoster(threading.Thread):
                                 cs.sendall(bytes(singleLineChangeToStr, 'utf-8'))
                                 time.sleep(0.1)
 ################主页查书
+################买书
+                    #'2'
+                    #'34'
+                    #'0'|'1'
+                    if recKeyWords[0] == '2': #买书
+                        buyBookId = recKeyWords[1]  #书籍Id
+                        payFlag = recKeyWords[2]    #付款标志
+                        buyBookRec = MC_BuyBook(buyBookId, payFlag)
+                        ret = buyBookRec.buybook()
 
+                        if ret == '0':
+                            buyRecData = '1'     #标志购买成功
+                            cs.sendall(bytes(buyRecData, 'utf-8'))
+                            time.sleep(0.1)
+                        elif ret == '-1':
+                            buyRecData = '-1'     #标志已经付款了，但数据库操作失败
+                            cs.sendall(bytes(buyRecData, 'utf-8'))
+                            time.sleep(0.1)
+                        elif ret == '2':
+                            buyRecData = '0'  #标志界面中的书籍ID有误
+                            cs.sendall(bytes(buyRecData, 'utf-8'))
+                            time.sleep(0.1)
+                        else:
+                            buyRecData = '2'  # 已查找对应书籍，但未付款
+                            cs.sendall(bytes(buyRecData, 'utf-8'))
+                            time.sleep(0.5)
+################买书毕
 
 ################借书
                     elif recKeyWords[0] == '3':
