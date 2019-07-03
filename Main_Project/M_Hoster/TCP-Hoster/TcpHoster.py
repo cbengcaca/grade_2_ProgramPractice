@@ -17,7 +17,7 @@ class TcpHoster(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
         self.flag = True
-        self.host = '10.240.253.148'
+        self.host = '10.240.59.109'
         self.port = 4700
         self.buf = 1024
         self.addr = (self.host, self.port)
@@ -117,8 +117,8 @@ class TcpHoster(threading.Thread):
                                 cs.sendall(bytes(singleLineChangeToStr, 'utf-8'))
                                 time.sleep(0.1)
 
-                    else:
-                        cs.sendall(bytes("1", 'utf-8'))
+                        else:
+                            cs.sendall(bytes("1", 'utf-8'))
                     ################下架毕
 
                     ################查读
