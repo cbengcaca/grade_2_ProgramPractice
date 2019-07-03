@@ -10,6 +10,6 @@ class VC_SignIn:
         list.append("==")
         a = TcpClienter.TcpClienter()
         list = a.send(list)
-        V_SignIn.status = list[0]
+        V_SignIn.status = int(list[0][0])
         #a = MC_SignIn.MC_SignIn()
         #V_SignIn.status = a.sign(userId,pwd)

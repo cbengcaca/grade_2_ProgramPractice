@@ -3,8 +3,6 @@ from M_Clienter import TcpClienter
 class VC_BorrowOrReturnBook:
     def VC_BORB(self,userID,bookID,type):
         list = []
-
-
         #a = MC_BorrowOrReturnBook.MC_BorrowOrReturnBook()
         if type == 0:
             list.append("3")

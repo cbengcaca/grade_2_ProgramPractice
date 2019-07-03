@@ -9,7 +9,7 @@ from VC_windowsControl import VC_BorrowOrReturnBook
 class V_BorrowOrReturnBook:
     def __init__(self):                #type等于0为借书，type等于1为还书
         k = V_SignIn.V_SignIn()
-        if(V_SignIn.status):
+        if(V_SignIn.status==1):
             self.__root = Tk()
             self.__root.title("借/还书")
             self.__root.geometry('420x70')  # 借书窗口起始
@@ -43,11 +43,15 @@ class V_BorrowOrReturnBook:
             self.__root.mainloop()
 
     def BorrowOrReturn(self,type):
-        isbn=self.__entryISBN.get()
-        a = VC_BorrowOrReturnBook.VC_BorrowOrReturnBook()
-        result = int(a.VC_BORB(V_SignIn.userID,isbn,type))
-        if result == 0:       #操作成功
-            a = tkinter.messagebox.showinfo('提示', '操作成功')
-            self.__entryISBN.delete(0,END)
-        else:       #操作失败
-            a = tkinter.messagebox.showerror('错误', '操作失败')
+        isbn = self.__entryISBN.get()
+        if isbn:
+            a = VC_BorrowOrReturnBook.VC_BorrowOrReturnBook()
+            result = int(a.VC_BORB(V_SignIn.userID, isbn, type))
+            if result == 0:       #操作成功
+                a = tkinter.messagebox.showinfo('提示', '操作成功')
+                self.__entryISBN.delete(0,END)
+            else:       #操作失败
+                a = tkinter.messagebox.showerror('错误', '操作失败')
+        else:
+            a = tkinter.messagebox.showerror('错误', '书号不能为空！')
+a = V_BorrowOrReturnBook()

@@ -47,11 +47,10 @@ class V_SignIn:
         a.ensure(userId,pwd)
         global status
         #数据库校验账号信息 status = M_SignIn.Sign
-        if status:  # 操作成功
+        if status == 1:  # 操作成功
             b = tkinter.messagebox.showinfo('提示', '登录成功')
             global userID
             userID = userId
-            status=1
             self.__root.withdraw()
             self.__root.quit()
         else:  # 操作失败
