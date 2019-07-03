@@ -27,6 +27,7 @@ class Acon_devideWordsOp:
             self.__selSQL += "bookName LIKE '%" + self.__bookName + "%'"
         if self.__bookMinPrice != 'None':  # 所查找书籍的价格底线
             flagIfFirst += 1
+            previousNum += 1
             if flagIfFirst is 1:
                 self.__selSQL += " Where "
             if previousNum >= 2:
@@ -34,11 +35,15 @@ class Acon_devideWordsOp:
             self.__selSQL += "bookPrice > " + self.__bookMinPrice
         if self.__bookMaxPrice != 'None':  # 所查找书籍的价格上限
             flagIfFirst += 1
+            previousNum += 1
             if flagIfFirst is 1:
                 self.__selSQL += " Where "
+            if previousNum >= 2:
+                self.__selSQL += " AND "
             self.__selSQL += "bookPrice < " + self.__bookMaxPrice
         if self.__publishTime != 'None':  # 出版时间
             flagIfFirst += 1
+            previousNum += 1
             if flagIfFirst is 1:
                 self.__selSQL += " Where "
             if previousNum >= 2:
@@ -46,6 +51,7 @@ class Acon_devideWordsOp:
             self.__selSQL += "bookCreateTime =" + self.__publishTime
         if self.__bookAuthor != 'None':  # 作者不为空，模糊查询
             flagIfFirst += 1
+            previousNum += 1
             if flagIfFirst is 1:
                 self.__selSQL += " Where "
             if previousNum >= 2:
@@ -53,6 +59,7 @@ class Acon_devideWordsOp:
             self.__selSQL += "bookAuthor LIKE '%" + self.__bookAuthor + "%'"
         if self.__bookPublisher != 'None':  # 出版社不为空，模糊查询
             flagIfFirst += 1
+            previousNum += 1
             if flagIfFirst is 1:
                 self.__selSQL += " Where "
             if previousNum >= 2:

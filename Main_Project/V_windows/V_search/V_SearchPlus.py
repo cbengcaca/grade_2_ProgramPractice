@@ -7,7 +7,7 @@ class V_SearchPlus():
 
     def __init__(self):         #,father):
         # self.father = father
-        self.root = Tk()
+        self.root = Toplevel()
         self.root.title('SEARCHPLUS')
         self.root.geometry('400x300')
         # self.root.geometry(self.father.locate)
@@ -144,17 +144,8 @@ class V_SearchPlus():
 
 
     def sendSearch(self):
-        ############################################################################################################################################
-        # print(self.Price.get())   ###############################
-        # print(self.bookPublishTime.get())  ###############################
-        # print(self.sort.get())  ###############################
 
         self.getValue()
-
-        #print(self.Price.get())  ###############################
-        #print(self.bookPublishTime.get())  ###############################
-        #print(self.sort.get())  ###############################
-
         vc_searchPlus = VC_SearchPlus()
         searchList = ['1', str(self.bookName.get()), str(self.minPrice), str(self.maxPrice),str(self.bookPublishTime.get())
                         , str(self.author.get()), str(self.bookPublisher.get()),str(self.sortValue), str(self.sortWay), '==']

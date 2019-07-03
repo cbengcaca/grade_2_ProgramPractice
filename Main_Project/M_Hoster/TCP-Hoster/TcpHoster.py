@@ -10,6 +10,7 @@ from M_Hoster.M_Control.MC_adminLogin import MC_AdminLogin
 from M_Hoster.M_Control.MC_searchReader import MC_SearchReader
 from M_Hoster.M_Control import MC_SignIn
 from M_Hoster.M_Control.MC_SearchBorrowMassage import MC_SearchBorrowMassage
+from M_Hoster.M_Control.MC_SearchNormal import MC_SearchNormal
 import time
 class TcpHoster(threading.Thread):
     def __init__(self):
@@ -129,6 +130,20 @@ class TcpHoster(threading.Thread):
                                 print(singleLineChangeToStr)
                                 cs.sendall(bytes(singleLineChangeToStr, 'utf-8'))
                                 time.sleep(0.1)
+
+################查书normal8
+                    if recKeyWords[0] == '8':
+                        searchNormal = MC_SearchNormal()
+                        ret = searchNormal.getSearchNormal(recKeyWords[1:])
+                        if ret:
+                            for singleLine in ret:
+                                print(singleLine)
+                                singleLineChangeToStr = ','.join([str(i) for i in singleLine])
+                                print(singleLineChangeToStr)
+                                cs.sendall(bytes(singleLineChangeToStr, 'utf-8'))
+                                time.sleep(0.1)
+
+
 ################还书
                     elif recKeyWords[0] == '9':
                         a = MC_BorrowOrReturnBook.MC_BorrowOrReturnBook()
