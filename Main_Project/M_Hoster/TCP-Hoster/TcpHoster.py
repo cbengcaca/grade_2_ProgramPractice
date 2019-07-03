@@ -11,12 +11,13 @@ from M_Hoster.M_Control.MC_searchReader import MC_SearchReader
 from M_Hoster.M_Control import MC_SignIn
 from M_Hoster.M_Control.MC_SearchBorrowMassage import MC_SearchBorrowMassage
 from M_Hoster.M_Control.MC_SearchNormal import MC_SearchNormal
+from M_Hoster.M_Control.MC_downBook import MC_downBook
 import time
 class TcpHoster(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
         self.flag = True
-        self.host = '10.240.59.109'
+        self.host = '10.240.253.148'
         self.port = 4700
         self.buf = 1024
         self.addr = (self.host, self.port)
@@ -103,7 +104,24 @@ class TcpHoster(threading.Thread):
                         cs.sendall(bytes(bookId, 'utf-8'))
                         time.sleep(0.5)
 ################上架毕
-################查读
+################下架
+                    elif recKeyWords[0] == '5':
+                        bookDown = MC_downBook()
+                        ret = bookDown.changeBookInfo(recKeyWords)
+
+                        if ret:
+                            for singleLine in ret:
+                                print(singleLine)
+                                singleLineChangeToStr = ','.join([str(i) for i in singleLine])
+                                print(singleLineChangeToStr)
+                                cs.sendall(bytes(singleLineChangeToStr, 'utf-8'))
+                                time.sleep(0.1)
+
+                    else:
+                        cs.sendall(bytes("1", 'utf-8'))
+                    ################下架毕
+
+                    ################查读
                     if recKeyWords[0] == '6':
                         searchReader = MC_SearchReader()
                         ret = searchReader.searchReader()

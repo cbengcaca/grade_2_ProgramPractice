@@ -1,10 +1,11 @@
 from tkinter import *
 from tkinter import messagebox
-from VC_downBook import VC_downBook
+from VC_windowsControl.VC_downBook import VC_downBook
 class V_DownBook():
 
-    def __init__(self):
-        self.root = Tk()
+    def __init__(self,operId):
+        self.operId = operId
+        self.root = Toplevel()
         self.root.title('DownBook')
         self.root.geometry('400x200')
         self.root.resizable(0,0)
@@ -16,11 +17,11 @@ class V_DownBook():
         labelInputTip.pack(side = TOP)
 
         self.bookId = StringVar()
-        entryBookId = Entry(textvariable = self.bookId)
+        entryBookId = Entry(self.root,textvariable = self.bookId)
         entryBookId.pack(side = TOP)
 
 
-        buttonConfirm = Button(text = '确认',command = self.getInput)
+        buttonConfirm = Button(self.root,text = '确认',command = self.getInput)
         buttonConfirm.pack(side = TOP)
 
         buttonReturn = Button(self.root, text='返回', command=self.returnFather, font='Consoles')
@@ -32,7 +33,7 @@ class V_DownBook():
     def getInput(self):
         infoList = ['5']
         infoList.append(self.bookId.get())
-        infoList.append('1')
+        infoList.append(self.operId)
         infoList.append('==')
         vc = VC_downBook()
         sign = vc.deleteBook(infoList)
@@ -45,7 +46,7 @@ class V_DownBook():
         self.root.quit()
         self.root.destroy()
 
-# a = V_DownBook()
+# a = V_DownBook('2')
 # getInput = a.getInput()
 
 

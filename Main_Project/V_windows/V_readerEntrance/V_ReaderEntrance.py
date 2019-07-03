@@ -1,7 +1,7 @@
 from tkinter import *
 from V_windows.V_readerEntrance.V_BuyBook import V_BuyBook
 from V_windows.V_readerEntrance.V_BorrowOrReturnBook import V_BorrowOrReturnBook
-import win32gui,win32con
+
 
 class V_ReaderEntrance():
     def __init__(self):

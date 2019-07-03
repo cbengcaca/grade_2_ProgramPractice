@@ -6,7 +6,7 @@ from V_windows.V_adminEntrance.V_SearchBorrowMassage import V_SearchBorrowMassag
 from V_windows.V_adminEntrance.V_SearchReader import V_SearchReader
 from VC_windowsControl.VC_AdminEntranceControl import VC_AdminEntranceControl
 from V_windows.V_adminEntrance.C_GetLogin import C_GetLogin
-import win32con,win32gui
+
 class V_AdminEntrance():
     def __init__(self):
         self.root = Tk()
@@ -66,7 +66,7 @@ class V_AdminEntrance():
         return
 
     def openBookDown(self):
-        bookDown = V_DownBook()
+        bookDown = V_DownBook(self.id)
         return
 
     def openSearchReader(self):

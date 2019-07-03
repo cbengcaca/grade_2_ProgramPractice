@@ -1,6 +1,6 @@
-from M_SqlRunner import M_SqlRunner
-from Lcon_opOnBookInfo import Lcon_opOnBookInfo
-from Lcon_opOnTBookChange import Lcon_opOnTBookChange
+from M_Hoster.M_SqlRunner.M_SqlRunner import M_SqlRunner
+from M_Hoster.Table_constructor.Lcon_opOnTBookInfo import Lcon_opOnBookInfo
+from M_Hoster.Table_constructor.Lcon_opOnTBookChange import Lcon_opOnTBookChange
 
 class Acon_downBook:
     #获取bookId是否存在
