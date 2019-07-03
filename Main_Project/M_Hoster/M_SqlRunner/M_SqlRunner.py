@@ -5,7 +5,6 @@ class M_SqlRunner:
         db = pymysql.connect('106.52.87.149', 'root', '000000', 'softwarePractice')
         cursor = db.cursor()
         try:
-
             for sql in sqlList:
                 tmp = sql.strip(' ').split()[0]
                 cursor.execute(sql)
