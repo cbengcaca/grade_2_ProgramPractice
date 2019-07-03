@@ -54,4 +54,4 @@ class V_BorrowOrReturnBook:
                 a = tkinter.messagebox.showerror('错误', '操作失败')
         else:
             a = tkinter.messagebox.showerror('错误', '书号不能为空！')
-a = V_BorrowOrReturnBook()
+# a = V_BorrowOrReturnBook()
