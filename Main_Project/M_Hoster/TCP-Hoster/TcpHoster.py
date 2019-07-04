@@ -18,7 +18,7 @@ class TcpHoster(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
         self.flag = True
-        self.host = '10.236.248.106'
+        self.host = '10.240.224.173'
         self.port = 4700
         self.buf = 1024
         self.addr = (self.host, self.port)

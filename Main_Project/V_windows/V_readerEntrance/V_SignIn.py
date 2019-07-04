@@ -33,7 +33,7 @@ class V_SignIn:
 
         frm_S = Frame(frm)                                  #第二层开始
         Button(frm_S, text="确认", command=self.sign, width=6, height=1, font=('Arial', 10)).pack(side=LEFT)
-        Button(frm_S, text="返回", command=self.__root.quit, width=6, height=1, font=('Arial', 10)).pack(side=RIGHT)
+        Button(frm_S, text="返回", command=self.selfDestory, width=6, height=1, font=('Arial', 10)).pack(side=RIGHT)
         frm_S.pack(side=BOTTOM)                             #第二层结束
 
         frm.pack()                                  # 主界面结束
@@ -55,5 +55,9 @@ class V_SignIn:
             self.__root.quit()
         else:  # 操作失败
             a = tkinter.messagebox.showerror('错误', '账号或密码错误！')
+
+    def selfDestory(self):
+        self.__root.quit()
+        self.__root.destroy()
 userID = 0
 status = 0

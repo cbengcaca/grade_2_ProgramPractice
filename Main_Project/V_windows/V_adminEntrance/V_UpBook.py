@@ -14,6 +14,7 @@ class V_UpBook():
         self.root.geometry('500x600')
         self.root.geometry(self.locate)
         self.root.resizable(0, 0)
+        self.ret = [[]]
 
         labelBlank1 = Label(self.root)
         labelBlank1.pack(side = TOP)
@@ -100,6 +101,8 @@ class V_UpBook():
             self.tree.delete(item)
         vc = VC_UpBook()
         getIsbn = V_getIsbn(self)
+        if getIsbn == '':
+            messagebox.showerror(message= '输入ISBN不能为空')
         infoList = ['4', self.isbn]
         #查询isbn是否存在
         #存在返回1
@@ -111,11 +114,12 @@ class V_UpBook():
             ##获得最新的bookid
             bookId = vc.addBookExist(infoList)
             if bookId is not '0':
-                messagebox.showinfo(message= 'newBookId is '+ bookId)
+                messagebox.showinfo(message= '新书id为：'+ bookId)
             else:
-                messagebox.showerror(message= 'add Failed')
+                messagebox.showerror(message= '上架失败')
             return
         else: ##isbn不存在
+            self.ret = ret
             for list in ret:
                 self.setTreeView(list)
 
@@ -126,6 +130,14 @@ class V_UpBook():
         self.tree.insert('', 'end', values = list)
 
     def addNewBookNotExist(self):
+        if self.ret == [[]]:
+            messagebox.showerror(message= '没有事先查询ISBN信息')
+            return
+
+
+
+
+
         infoList = ['4.0']
         infoList.append(self.isbn)
         infoList.append(self.stringName.get())
@@ -135,12 +147,29 @@ class V_UpBook():
         infoList.append(self.stringCreateTime.get())
         infoList.append(self.operId)
         infoList.append(self.stringLocate.get())
+
+        flag = True
+        for i in infoList:
+            if i == '':
+                flag = False
+        if flag == False:
+            messagebox.showerror(message= '输入信息不完整')
+            return
+
+        flag = False
+        for i in self.ret:
+            if self.stringLocate.get() == i:
+                flag = True
+        if flag == False:
+            messagebox.showerror(message= '书架信息有误')
+            return
+
         vc = VC_UpBook()
         bookId = vc.addBookNotExist(infoList)
         if bookId is not '0':
-            messagebox.showinfo(message='newBookId is ' + bookId)
+            messagebox.showinfo(message='新书id是：' + bookId)
         else:
-            messagebox.showerror(message='add Failed')
+            messagebox.showerror(message='上架失败')
 
     def returnFather(self):
         self.root.quit()

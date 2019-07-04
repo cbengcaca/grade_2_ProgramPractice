@@ -17,35 +17,35 @@ class V_AdminEntrance():
         self.locate = '+400+200'
         self.size = '500x300'
 
-        self.root.title('ADMIN ENTRANCE')
+        self.root.title('管理员入口')
         self.root.geometry(self.size)
         self.root.geometry(self.locate)
         self.root.resizable(0,0)
 
 
-        labelBookAdmin = Label(self.root,text = "Book Admin")
+        labelBookAdmin = Label(self.root)
         labelBookAdmin.pack(side = TOP)
 
         frameButtonAdminBook = Frame(self.root)
         frameButtonAdminBook.pack(side = TOP)
 
-        buttonBookUp = Button(frameButtonAdminBook,text = 'BOOKUP',command = self.openBookUp,font='Consoles')
-        buttonBookUp.pack(side = LEFT)
-        buttonBookDown = Button(frameButtonAdminBook, text = 'BOOKDOWN',command = self.openBookDown,font='Consoles')
-        buttonBookDown.pack(side = LEFT)
+        self.buttonBookUp = Button(frameButtonAdminBook,text = '书籍上架',command = self.openBookUp,font='Consoles')
+        self.buttonBookUp.pack(side = LEFT)
+        self.buttonBookDown = Button(frameButtonAdminBook, text = '书籍下架',command = self.openBookDown,font='Consoles')
+        self.buttonBookDown.pack(side = LEFT)
 
         labelBlank1 = Label(self.root)
         labelBlank1.pack(side = TOP)
-        labelWorkAdmin = Label(self.root,text = 'Work Admin')
-        labelWorkAdmin.pack(side = TOP)
+        # labelWorkAdmin = Label(self.root,text = 'Work Admin')
+        # labelWorkAdmin.pack(side = TOP)
 
         frameButtonAdminWork = Frame(self.root)
         frameButtonAdminWork.pack(side = TOP)
 
-        buttonSearchReader = Button(frameButtonAdminWork,text = 'SEARCH READER',command = self.openSearchReader,font='Consoles')
-        buttonSearchReader.pack(side = LEFT)
-        buttonSearchBorrowList = Button(frameButtonAdminWork,text = 'SEARCH BORROW',command = self.openSearchBorrow,font='Consoles')
-        buttonSearchBorrowList.pack(side = LEFT)
+        self.buttonSearchReader = Button(frameButtonAdminWork,text = '读者信息浏览',command = self.openSearchReader,font='Consoles')
+        self.buttonSearchReader.pack(side = LEFT)
+        self.buttonSearchBorrowList = Button(frameButtonAdminWork,text = '借阅信息浏览',command = self.openSearchBorrow,font='Consoles')
+        self.buttonSearchBorrowList.pack(side = LEFT)
         # buttonSearchOverTime = Button(frameButtonAdminWork,text = 'SEARCH OVERTIME',command = self.openSearchOver,font='Consoles')
         # buttonSearchOverTime.pack(side = LEFT)
 
@@ -54,12 +54,26 @@ class V_AdminEntrance():
 
         buttonFrame = Frame(self.root)
         buttonFrame.pack(side = BOTTOM)
-        buttonLogin = Button(buttonFrame,text = "LOGIN", command = self.adminLogin, font = 'Consoles')
-        buttonLogin.pack(side = LEFT)
-        buttonReturn = Button(buttonFrame, text='return', command=self.selfDestory, font='Consoles')
-        buttonReturn.pack(side= LEFT)
+        self.buttonLogin = Button(buttonFrame,text = "管理员登录", command = self.adminLogin, font = 'Consoles')
+        self.buttonLogin.pack(side = LEFT)
+        self.buttonReturn = Button(buttonFrame, text='返回', command=self.selfDestory, font='Consoles')
+        self.buttonReturn.pack(side= LEFT)
+
+        self.setButtonState(False)
 
         mainloop()
+
+    def setButtonState(self,bool):
+        if bool == False:
+            self.buttonBookUp['state'] = DISABLED
+            self.buttonBookDown['state'] = DISABLED
+            self.buttonSearchReader['state'] = DISABLED
+            self.buttonSearchBorrowList['state'] = DISABLED
+        else:
+            self.buttonBookUp['state'] = NORMAL
+            self.buttonBookDown['state'] = NORMAL
+            self.buttonSearchReader['state'] = NORMAL
+            self.buttonSearchBorrowList['state'] = NORMAL
 
     def openBookUp(self):
         bookUp = V_UpBook(self.id)
@@ -80,7 +94,7 @@ class V_AdminEntrance():
 
     def adminLogin(self):
         if self.id is not '':
-            messagebox.showerror(message= 'Is already login')
+            messagebox.showerror(message= '无法重复登录')
             return
         else:
             logWindow = C_GetLogin()
@@ -88,6 +102,7 @@ class V_AdminEntrance():
             self.logKey = logWindow.getLogin()
 
             if self.logKey[0] == '' or self.logKey[1] == '':
+                messagebox.showerror(message='登录有误')
                 self.selfDestory()
                 return
 
@@ -95,12 +110,15 @@ class V_AdminEntrance():
             controler = VC_AdminEntranceControl()
             result = controler.getLogKeyToCompare(self.logKey)
             if result[0] is '0':
+
                 self.selfDestory()
                 return
             else:
+                messagebox.showinfo(message= '登录成功')
                 self.id = self.logKey[1]
                 self.pwd = self.logKey[2]
                 self.root.title(self.logKey[1])
+                self.setButtonState(True)
 
     def selfDestory(self):
         self.root.quit()

@@ -8,7 +8,7 @@ class V_Home():
         self.size = '450x250'
         self.locate = '+200+200'
         self.root = Tk()
-        self.root.title('HOME')
+        self.root.title('主页')
         self.root.geometry(self.size)
         self.root.geometry(self.locate)
         self.root.resizable(0,0)
@@ -17,25 +17,25 @@ class V_Home():
         labelBlank1 = Label(self.root)
         labelBlank1.pack(side = TOP)
 
-        buttonSearch = Button(self.root,text = 'SEARCH BOOK',command = self.openSearchEntrance,font = 'Consoles')
+        buttonSearch = Button(self.root,text = '查询书籍',command = self.openSearchEntrance,font = 'Consoles')
         buttonSearch.pack(side = TOP)
 
         labelBlank2 = Label(self.root)
         labelBlank2.pack(side = TOP)
 
-        buttonReader = Button(self.root,text = 'READER ENTRANCE',command = self.openReaderWindow,font = 'Consoles')
+        buttonReader = Button(self.root,text = '读者入口',command = self.openReaderWindow,font = 'Consoles')
         buttonReader.pack(side = TOP)
 
         labelBlank3 = Label(self.root)
         labelBlank3.pack(side = TOP)
 
-        buttonAdmin = Button(self.root,text = 'ADMIN ENTRANCE',command = self.openAdminWindow,font = 'Consoles')
+        buttonAdmin = Button(self.root,text = '管理员入口',command = self.openAdminWindow,font = 'Consoles')
         buttonAdmin.pack(side = TOP)
 
         labelBlankLast = Label(self.root)
         labelBlankLast.pack(side = TOP)
 
-        buttonClose = Button(self.root,text = 'CLOSE SYSTEM', command = self.root.destroy, font = 'Consoles')
+        buttonClose = Button(self.root,text = '关闭本系统', command = self.root.destroy, font = 'Consoles')
         buttonClose.pack(side = TOP)
 
         mainloop()

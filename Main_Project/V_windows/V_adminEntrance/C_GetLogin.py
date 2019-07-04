@@ -5,7 +5,7 @@ class V_Login:
     def __init__(self , fGet ):
         self.__fGet = fGet
         self.root = Toplevel()
-        self.root.title('LOGIN')
+        self.root.title('登录')
         self.root.resizable(0,0)
         self.root.geometry('400x200')
         self.root.attributes("-toolwindow", 1)
@@ -16,7 +16,7 @@ class V_Login:
 
         frameUserNumber = Frame(self.root)
         frameUserNumber.pack(side = TOP)
-        labelUserNumber = Label(frameUserNumber,text = 'NUMBER:')
+        labelUserNumber = Label(frameUserNumber,text = '管理员ID:',font = 'Consoles')
         self.__userNumber = StringVar()
         entryUserNumber = Entry(frameUserNumber,textvariable = self.__userNumber)
         labelUserNumber.pack(side = LEFT)
@@ -27,18 +27,19 @@ class V_Login:
 
         frameUserPwd = Frame(self.root)
         frameUserPwd.pack(side = TOP)
-        labelUserPwd = Label(frameUserPwd,text = 'PASSWORD:')
+        labelUserPwd = Label(frameUserPwd,text = '管理员密码:', font = 'Consoles')
         self.__userPwd = StringVar()
         entryUserPwd = Entry(frameUserPwd,textvariable = self.__userPwd)
         labelUserPwd.pack(side = LEFT)
         entryUserPwd.pack(side = RIGHT)
+        entryUserPwd['show'] = '*'
 
         labelBlank3 = Label(self.root)
         labelBlank3.pack(side = TOP)
 
         frameButton = Frame(self.root)
         frameButton.pack(side = TOP)
-        buttonConfirm = Button(frameButton,text = 'COMFIRM',command = self.sendOutInput)
+        buttonConfirm = Button(frameButton,text = '确认',command = self.sendOutInput, font = 'Consoles')
         buttonConfirm.pack(side = LEFT)
 
         mainloop()

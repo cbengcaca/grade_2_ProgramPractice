@@ -6,7 +6,7 @@ class V_DownBook():
     def __init__(self,operId):
         self.operId = operId
         self.root = Toplevel()
-        self.root.title('DownBook')
+        self.root.title('书籍下架')
         self.root.geometry('400x200')
         self.root.resizable(0,0)
 

@@ -18,7 +18,7 @@ class V_BuyBook:
         frm = Frame(self.__root)
 
         frameLable = Frame(frm)                   #设置标签
-        Label(frameLable, text = 'BOOKNUMBER').pack(side = TOP)
+        Label(frameLable, text = '书籍ID：', font = 'Consoles').pack(side = TOP)
         frameLable.pack(side = LEFT)
 
         frameEntry = Frame(frm)                   #设置输入框
@@ -30,8 +30,8 @@ class V_BuyBook:
         frm.pack(side = TOP, anchor = CENTER)
 
         frameButton = Frame(self.__root)          #设置按钮
-        Button(frameButton, text = '购买', command = self.payBook, width = 6, height = 1).pack(side = LEFT)       #支付界面
-        Button(frameButton, text = '取消', command = self.__root.quit, width = 6, height = 1).pack(side = LEFT)   #返回
+        Button(frameButton, text = '购买', command = self.payBook, width = 6, height = 1,font = 'Consoles').pack(side = LEFT)       #支付界面
+        Button(frameButton, text = '取消', command = self.selfRootDestory, width = 6, height = 1,font = 'Consoles').pack(side = LEFT)   #返回
         frameButton.pack(anchor = CENTER)
 
         mainloop()
@@ -51,8 +51,8 @@ class V_BuyBook:
                 Label(self.second, image = self.__imagePay).pack(anchor = CENTER)
 
                 frameButton = Frame(self.second)
-                Button(frameButton, text = '我已付款', command = self.resultOfBuy, width = 6, height = 1).pack(side = LEFT)     #支付成功
-                Button(frameButton, text = '放弃购买', command = self.second.quit, width = 6, height = 1).pack(side = LEFT)
+                Button(frameButton, text = '我已付款', command = self.resultOfBuy, width = 6, height = 1,font = 'Consoles').pack(side = LEFT)     #支付成功
+                Button(frameButton, text = '放弃购买', command = self.selfDestory, width = 6, height = 1,font = 'Consoles').pack(side = LEFT)
                 frameButton.pack(anchor = CENTER)
             else:
                 messagebox.showwarning('错误', '书籍Id有误')
@@ -62,6 +62,14 @@ class V_BuyBook:
             messagebox.showwarning('错误', '书籍Id有误')
             self.__root.quit()
             self.__root.destroy()
+
+    def selfRootDestory(self):
+        self.__root.quit()
+        self.__root.destroy()
+
+    def selfDestory(self):
+        self.second.quit()
+        self.second.destroy()
 
     def getBookId(self):
         return self.__varBookId.get()

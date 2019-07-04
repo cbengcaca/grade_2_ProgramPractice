@@ -16,7 +16,7 @@ class V_SearchBorrowMassage:
     def getTreeView(self):
         #self.father = father
         self.root = Tk()
-        self.root.title('SearchBorrowMassage')
+        self.root.title('浏览借阅记录')
         self.root.geometry('714x460')
         # self.root.geometry(self.father.locate)
         self.root.resizable(0,0)
