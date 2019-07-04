@@ -3,7 +3,7 @@ import time
 
 
 class TcpClienter():
-    def send(self,searchData,host = '10.241.67.169'):
+    def send(self,searchData,host = '10.240.224.173'):
         buf = 1024
         addr = (host, 4700)
         cs = socket(AF_INET, SOCK_STREAM, 0)

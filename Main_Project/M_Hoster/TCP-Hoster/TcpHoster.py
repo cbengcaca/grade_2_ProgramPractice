@@ -18,7 +18,7 @@ class TcpHoster(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
         self.flag = True
-        self.host = '10.241.67.169'
+        self.host = '10.236.248.106'
         self.port = 4700
         self.buf = 1024
         self.addr = (self.host, self.port)
@@ -64,29 +64,33 @@ class TcpHoster(threading.Thread):
                                 cs.sendall(bytes(singleLineChangeToStr, 'utf-8'))
                                 time.sleep(0.1)
 ################主页查书
-                    if recKeyWords[0] == '2':  # 买书
-                        buyBookId = recKeyWords[1]  # 书籍Id
-                        payFlag = recKeyWords[2]  # 付款标志
+################买书
+                    #'2'
+                    #'34'
+                    #'0'|'1'
+                    if recKeyWords[0] == '2': #买书
+                        buyBookId = recKeyWords[1]  #书籍Id
+                        payFlag = recKeyWords[2]    #付款标志
                         buyBookRec = MC_BuyBook(buyBookId, payFlag)
                         ret = buyBookRec.buybook()
 
                         if ret == '0':
-                            buyRecData = '1'  # 标志购买成功
+                            buyRecData = '1'     #标志购买成功
                             cs.sendall(bytes(buyRecData, 'utf-8'))
                             time.sleep(0.1)
                         elif ret == '-1':
-                            buyRecData = '-1'  # 标志已经付款了，但数据库操作失败
+                            buyRecData = '-1'     #标志已经付款了，但数据库操作失败
                             cs.sendall(bytes(buyRecData, 'utf-8'))
                             time.sleep(0.1)
                         elif ret == '2':
-                            buyRecData = '0'  # 标志界面中的书籍ID有误
+                            buyRecData = '0'  #标志界面中的书籍ID有误
                             cs.sendall(bytes(buyRecData, 'utf-8'))
                             time.sleep(0.1)
                         else:
                             buyRecData = '2'  # 已查找对应书籍，但未付款
                             cs.sendall(bytes(buyRecData, 'utf-8'))
                             time.sleep(0.5)
-                    ################买书毕
+################买书毕
 
 ################借书
                     elif recKeyWords[0] == '3':
@@ -214,7 +218,7 @@ class TcpHoster(threading.Thread):
                         time.sleep(0.1)
 
 ################管理员登录毕
-                    time.sleep(1)
+                    time.sleep(0.1)
                     cs.sendall(bytes('==', 'utf-8'))
                     cs.close()
                     break

@@ -10,18 +10,15 @@ class MC_BorrowOrReturnBook:
         list.append(sql)
         db = M_SqlRunner.M_SqlRunner()
         result = db.beginSql(list)
-        if result:
-            isbn = str(result[0][0])
-            sql = Acon_BorrowOrReturnBook.update_num(isbn)
-            list = []
-            list.append(sql)                #isbn可用书籍数量建议
-            # 借阅记录
-            a = Lcon_BorrowList.Lcon_BorrowList()
-            sql = a.insert(bookID, UserID)
-            list.append(sql)
-            return db.beginSql(list)
-        else:
-            return -1
+        isbn = str(result[0][0])
+        sql = Acon_BorrowOrReturnBook.update_num(isbn)
+        list = []
+        list.append(sql)                #isbn可用书籍数量建议
+        # 借阅记录
+        a = Lcon_BorrowList.Lcon_BorrowList()
+        sql = a.insert(bookID, UserID)
+        list.append(sql)
+        return db.beginSql(list)
 
     def Return(self,bookID):
         db = M_SqlRunner.M_SqlRunner()
