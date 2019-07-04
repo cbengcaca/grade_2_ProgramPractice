@@ -25,7 +25,7 @@ class V_SearchNormal():
 
         self.bookName = StringVar()
         entryBookName = ttk.Combobox(frameName, width=20, textvariable=self.bookName)
-        entryBookName['values'] = ('', ' %算法与数据结构% ')
+        entryBookName['values'] = ('', '%算法与数据结构%')
         entryBookName.pack(side=RIGHT)
 
 #作者
@@ -36,7 +36,7 @@ class V_SearchNormal():
 
         self.Author = StringVar()
         entryAuthor = ttk.Combobox(frameAuthor, width=20, textvariable=self.Author)
-        entryAuthor['values'] = ('', '%苏小红% ')
+        entryAuthor['values'] = ('', '%苏小红%')
         entryAuthor.pack(side=RIGHT)
 
 #价格
@@ -68,7 +68,7 @@ class V_SearchNormal():
 
         self.publishTime = StringVar()
         entryPublishTime = ttk.Combobox(framePublishTime, width=20, textvariable=self.publishTime)
-        entryPublishTime['values'] = ('', '1970 ')
+        entryPublishTime['values'] = ('', '1970')
         entryPublishTime.pack(side=RIGHT)
 
 #出版社

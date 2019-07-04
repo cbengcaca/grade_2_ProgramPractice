@@ -33,11 +33,11 @@ class V_Search():
 
 
     def openSearchPlus(self):
-        V_searchPlusNew = V_SearchPlus()
+        V_searchPlusNew = V_SearchNormal()
         return
 
     def openSearchNormal(self):
-        V_searchNormalNew = V_SearchNormal()
+        V_searchNormalNew = V_SearchPlus()
         return
 
     def returnFather(self):
