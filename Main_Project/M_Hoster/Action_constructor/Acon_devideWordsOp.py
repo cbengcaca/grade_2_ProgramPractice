@@ -10,7 +10,7 @@ class Acon_devideWordsOp:
         self.__bookPublisher = infoList[5]      #出版社
         self.__sortKey = infoList[6]            #排序关键字
         self.__sortFlag = infoList[7]           #升降序标志
-        self.__selSQL =  "SELECT a.bookName,a.bookPrice,a.bookCreateTime,a.bookAuthor, " \
+        self.__selSQL =  "SELECT DISTINCT a.bookName,a.bookPrice,a.bookCreateTime,a.bookAuthor, " \
                          "a.bookPUblisher,a.bookAvailableNum ,a.bookSaleNumber, a.shelflocate, date_format(b.returntime, '%Y%m%d')"
         self.__selSQL += " from v_isbnlocate a left join v_borrowandbookinfo b on a.isbn = b.isbn "
         #date_format(time, '%Y%m%d')
@@ -67,11 +67,11 @@ class Acon_devideWordsOp:
             self.__selSQL += "bookPublisher LIKE '%" + self.__bookAuthor + "%'"
 
         if self.__sortKey == "书名":  # 按书名首字母[汉字拼音首字母]排序
-            self.__selSQL += "ORDER BY bookName"
+            self.__selSQL += " ORDER BY bookName"
         if self.__sortKey == "价格":  # 按价格排序
-            self.__selSQL += "ORDER BY bookPrice"
+            self.__selSQL += " ORDER BY bookPrice"
         if self.__sortKey == "销量":  # 按销量排序
-            self.__selSQL += "ORDER BY bookSaleNumber"
+            self.__selSQL += " ORDER BY bookSaleNumber"
         if self.__sortFlag == '0':  # 降序排列
             self.__selSQL += " DESC"
 
