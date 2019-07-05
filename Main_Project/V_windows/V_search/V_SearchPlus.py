@@ -182,14 +182,14 @@ class V_SearchPlus():
         columns = ("书名", "作者", "销量", "价格", "出版时间", "出版社", '可借时间', "所在书架" )
         tv = ttk.Treeview(frameTreeView, height=20, show="headings", columns=columns)
 
-        tv.column("书名", width=80, anchor='center')
-        tv.column("作者", width=70, anchor='center')
-        tv.column("销量", width=80, anchor='center')
-        tv.column("价格", width=80, anchor='center')
-        tv.column("出版时间", width=75, anchor='center')
+        tv.column("书名", width=150, anchor='center')
+        tv.column("作者", width=120, anchor='center')
+        tv.column("销量", width=40, anchor='center')
+        tv.column("价格", width=50, anchor='center')
+        tv.column("出版时间", width=60, anchor='center')
         tv.column("出版社", width=100, anchor='center')
-        tv.column("可借时间", width=75, anchor='center')
-        tv.column("所在书架", width=200, anchor='center')
+        tv.column("可借时间", width=70, anchor='center')
+        tv.column("所在书架", width=170, anchor='center')
 
         tv.heading("书名", text="书名")  # 显示表头
         tv.heading("作者", text="作者")

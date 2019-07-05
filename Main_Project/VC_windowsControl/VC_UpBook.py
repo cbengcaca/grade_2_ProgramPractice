@@ -4,7 +4,7 @@ class VC_UpBook:
         sender = TcpClienter()
         ret = sender.send(infoList)
         ##isbn存在
-        if ret[0][0] is '1' and ret[0][1] == None:
+        if ret[0][0] is '1' :
             return '1'
         ##isbn不存在
         else :

@@ -25,7 +25,7 @@ class V_SearchNormal():
 
         self.bookName = StringVar()
         entryBookName = ttk.Combobox(frameName, width=20, textvariable=self.bookName)
-        entryBookName['values'] = ('', '%算法与数据结构%')
+        entryBookName['values'] = ('', '%JAVA%', '%Android%', '%高考%')
         entryBookName.pack(side=RIGHT)
 
 #作者
@@ -36,7 +36,7 @@ class V_SearchNormal():
 
         self.Author = StringVar()
         entryAuthor = ttk.Combobox(frameAuthor, width=20, textvariable=self.Author)
-        entryAuthor['values'] = ('', '%苏小红%')
+        entryAuthor['values'] = ('', '%欧阳燊%', '%周志明%', '%Robert%')
         entryAuthor.pack(side=RIGHT)
 
 #价格
@@ -68,7 +68,7 @@ class V_SearchNormal():
 
         self.publishTime = StringVar()
         entryPublishTime = ttk.Combobox(framePublishTime, width=20, textvariable=self.publishTime)
-        entryPublishTime['values'] = ('', '1970')
+        entryPublishTime['values'] = ('', '2010', '2014', '2016', '2019')
         entryPublishTime.pack(side=RIGHT)
 
 #出版社
@@ -79,7 +79,7 @@ class V_SearchNormal():
 
         self.publisher = StringVar()
         entryPublisher = ttk.Combobox(framePublisher, width=20, textvariable=self.publisher)
-        entryPublisher['values'] = ('', '%人民邮电出版社%')
+        entryPublisher['values'] = ('', '%机械工业出版社%',  '%人民邮电出版社%', '%清华大学出版社%')
         entryPublisher.pack(side=RIGHT)
 
 #排序方式
@@ -90,7 +90,7 @@ class V_SearchNormal():
 
         self.sortWay = StringVar()
         entrySortWay = ttk.Combobox(frameSortWay, width=20, textvariable=self.sortWay, state='readonly')
-        entrySortWay['values'] = ('',' ORDER BY bookName ', ' ORDER BY bookPrice ', ' ORDER BY bookSaleNum ')
+        entrySortWay['values'] = ('',' ORDER BY bookName ', ' ORDER BY bookPrice ', ' ORDER BY bookSaleNumber ')
         entrySortWay.pack(side=RIGHT)
 
 #升降序
@@ -206,14 +206,14 @@ class V_SearchNormal():
         columns = ("书名", "作者", "销量", "价格", "出版时间", "出版社", '可借时间', "所在书架")
         tv = ttk.Treeview(frameTreeView, height=20, show="headings", columns=columns)
 
-        tv.column("书名", width=80, anchor='center')
-        tv.column("作者", width=70, anchor='center')
-        tv.column("销量", width=80, anchor='center')
-        tv.column("价格", width=80, anchor='center')
-        tv.column("出版时间", width=75, anchor='center')
+        tv.column("书名", width=150, anchor='center')
+        tv.column("作者", width=120, anchor='center')
+        tv.column("销量", width=40, anchor='center')
+        tv.column("价格", width=50, anchor='center')
+        tv.column("出版时间", width=60, anchor='center')
         tv.column("出版社", width=100, anchor='center')
-        tv.column("可借时间", width=75, anchor='center')
-        tv.column("所在书架", width=200, anchor='center')
+        tv.column("可借时间", width=70, anchor='center')
+        tv.column("所在书架", width=170, anchor='center')
 
         tv.heading("书名", text="书名")  # 显示表头
         tv.heading("作者", text="作者")

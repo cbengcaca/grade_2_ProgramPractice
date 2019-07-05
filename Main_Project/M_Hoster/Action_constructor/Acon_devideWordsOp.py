@@ -71,7 +71,7 @@ class Acon_devideWordsOp:
         if self.__sortKey == "价格":  # 按价格排序
             self.__selSQL += "ORDER BY bookPrice"
         if self.__sortKey == "销量":  # 按销量排序
-            self.__selSQL += "ORDER BY bookSaleNum"
+            self.__selSQL += "ORDER BY bookSaleNumber"
         if self.__sortFlag == '0':  # 降序排列
             self.__selSQL += " DESC"
 
