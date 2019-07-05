@@ -119,9 +119,9 @@ class V_SearchNormal():
         self.root.destroy()
 
     def getSql(self):
-        self.selSQL = "SELECT a.bookName,a.bookPrice,a.bookCreateTime,a.bookAuthor, " \
-                        "a.bookPUblisher,a.bookAvailableNum ,a.bookSaleNumber, b.shelflocate, date_format(b.returntime, '%Y%m%d')"
-        self.selSQL += " from t_isbninfo a left join v_borrowandbookinfo b on a.isbn = b.isbn"
+        self.selSQL = "SELECT DISTINCT a.bookName,a.bookPrice,a.bookCreateTime,a.bookAuthor, " \
+                        "a.bookPUblisher,a.bookAvailableNum ,a.bookSaleNumber, a.shelflocate, date_format(b.returntime, '%Y%m%d')"
+        self.selSQL += " from v_isbnlocate a left join v_borrowandbookinfo b on a.isbn = b.isbn "
         flag = 0
         if self.bookName.get() != '':
             flag = 1

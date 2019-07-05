@@ -34,38 +34,39 @@ class V_UpBook():
         self.stringName = StringVar()
         labelBookName = Label(self.root,text = 'BookName:')
         labelBookName.pack(side = TOP)
-        entryInput1 = Entry(self.root,textvariable = self.stringName)
-        entryInput1.pack(side = TOP)
+        self.entryInput1 = Entry(self.root,textvariable = self.stringName)
+        self.entryInput1.pack(side = TOP)
+
 
         self.stringAuthor = StringVar()
         labelBookAuthor = Label(self.root, text='BookAuthor:')
         labelBookAuthor.pack(side=TOP)
-        entryInput3 = Entry(self.root , textvariable = self.stringAuthor)
-        entryInput3.pack(side=TOP)
+        self.entryInput3 = Entry(self.root , textvariable = self.stringAuthor)
+        self.entryInput3.pack(side=TOP)
 
         self.stringPublisher = StringVar()
         labelBookPublisher = Label(self.root, text='BookPublisher:')
         labelBookPublisher.pack(side=TOP)
-        entryInput4 = Entry(self.root,textvariable = self.stringPublisher)
-        entryInput4.pack(side=TOP)
+        self.entryInput4 = Entry(self.root,textvariable = self.stringPublisher)
+        self.entryInput4.pack(side=TOP)
 
         self.stringPrice = StringVar()
         labelBookPublisher = Label(self.root, text='BookPrice:')
         labelBookPublisher.pack(side=TOP)
-        entryInput5 = Entry(self.root,textvariable = self.stringPrice)
-        entryInput5.pack(side=TOP)
+        self.entryInput5 = Entry(self.root,textvariable = self.stringPrice)
+        self.entryInput5.pack(side=TOP)
 
         self.stringCreateTime = StringVar()
         labelBookPublisher = Label(self.root, text='BookCreateTime:')
         labelBookPublisher.pack(side=TOP)
-        entryInput6 = Entry(self.root,textvariable = self.stringCreateTime)
-        entryInput6.pack(side=TOP)
+        self.entryInput6 = Entry(self.root,textvariable = self.stringCreateTime)
+        self.entryInput6.pack(side=TOP)
 
         self.stringLocate = StringVar()
         labelBookLocation = Label(self.root,text = 'BookLocation:\nPlease devide by whiteSpace' )
         labelBookLocation.pack(side = TOP)
-        entryInput7 = Entry(self.root,textvariable = self.stringLocate)
-        entryInput7.pack(side = TOP)
+        self.entryInput7 = Entry(self.root,textvariable = self.stringLocate)
+        self.entryInput7.pack(side = TOP)
 
         labelBlank2 = Label(self.root)
         labelBlank2.pack(side = TOP)
@@ -95,7 +96,21 @@ class V_UpBook():
         # operId = infoList[7]
         # shelfId = infoList[8]
 
+    def cleanInput(self):
+        self.ret = [[]]
+        x = self.tree.get_children()
+        for item in x:
+            self.tree.delete(item)
+        self.entryInput1.delete('0','end')
+        self.entryInput3.delete('0', 'end')
+        self.entryInput4.delete('0', 'end')
+        self.entryInput5.delete('0', 'end')
+        self.entryInput6.delete('0', 'end')
+        self.entryInput7.delete('0', 'end')
+
+
     def getIsbn(self):
+        self.cleanInput()
         x = self.tree.get_children()
         for item in x:
             self.tree.delete(item)
@@ -130,12 +145,10 @@ class V_UpBook():
         self.tree.insert('', 'end', values = list)
 
     def addNewBookNotExist(self):
+
         if self.ret == [[]]:
             messagebox.showerror(message= '没有事先查询ISBN信息')
             return
-
-
-
 
 
         infoList = ['4.0']
@@ -163,7 +176,7 @@ class V_UpBook():
         if flag == False:
             messagebox.showerror(message= '书架信息有误')
             return
-
+        self.cleanInput()
         vc = VC_UpBook()
         bookId = vc.addBookNotExist(infoList)
         if bookId is not '0':
