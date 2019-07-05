@@ -13,6 +13,7 @@ class V_BorrowOrReturnBook:
             self.__root = Tk()
             self.__root.title("借/还书")
             self.__root.geometry('420x70')  # 借书窗口起始
+            self.__root.geometry('+820+300')
             self.__root.resizable(0,0)
 
             frm = Frame(self.__root)                        # 主界面起始

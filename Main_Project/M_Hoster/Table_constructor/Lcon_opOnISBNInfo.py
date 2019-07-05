@@ -8,7 +8,7 @@ class Lcon_opOnISBNInfo:
         self.sql += ",bookAuthor = '" + bookAuthor + "'"
         self.sql += ",bookPublisher = '" + bookPublisher + "'"
         self.sql += ",bookPrice = '" + bookPrice + "'"
-        self.sql += ",bookCreateTime = str_to_date('" + bookCreateTime + "', '%m/%d/%y')"
+        self.sql += ",bookCreateTime = '" + bookCreateTime + "'"
         self.sql += ",bookMaxNum = '" + bookMaxNum + "'"
         self.sql += ",bookAvailableNum = '" + bookAviliableNum + "'"
         self.sql += ",bookSaleNumber = '" + bookSaleNumber + "'"

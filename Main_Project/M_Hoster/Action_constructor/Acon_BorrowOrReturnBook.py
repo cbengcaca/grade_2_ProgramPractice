@@ -13,5 +13,5 @@ def update_borrowlist(borrowId):
     return sql
 
 def select_borrowid(bookID):
-    sql = "SELECT max(borrowId) from t_borrowlist where bookId = '" + bookID + "'"
+    sql = "SELECT max(borrowId) from t_borrowlist where bookId = '" + bookID + "' and returntime is Null"
     return sql

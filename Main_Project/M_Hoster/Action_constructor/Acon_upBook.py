@@ -21,7 +21,7 @@ class Acon_UpBook:
         return sqlChange
 
     #isbn新添加
-    def addNewIsbn(self,isbn, shelfid,bookName, bookAuthor, bookPublisher, bookPrice, bookCreateTime,bookMaxNum='1', bookAvailableNum='0', bookSaleNumber='0'):
+    def addNewIsbn(self,isbn, shelfid,bookName, bookAuthor, bookPublisher, bookPrice, bookCreateTime,bookMaxNum='1', bookAvailableNum='1', bookSaleNumber='0'):
         isbninfoCreater = Lcon_opOnISBNInfo()
 
         sqlIsbninfo = isbninfoCreater.add(isbn, bookName, bookAuthor, bookPublisher, bookPrice, bookCreateTime,bookMaxNum, bookAvailableNum, bookSaleNumber)

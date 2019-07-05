@@ -6,7 +6,7 @@ from V_windows.V_adminEntrance.V_AdminEntrance import V_AdminEntrance
 class V_Home():
     def __init__(self):
         self.size = '450x250'
-        self.locate = '+200+200'
+        self.locate = '+10+10'
         self.root = Tk()
         self.root.title('主页')
         self.root.geometry(self.size)

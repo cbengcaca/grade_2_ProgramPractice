@@ -11,8 +11,8 @@ class Acon_devideWordsOp:
         self.__sortKey = infoList[6]            #排序关键字
         self.__sortFlag = infoList[7]           #升降序标志
         self.__selSQL =  "SELECT a.bookName,a.bookPrice,a.bookCreateTime,a.bookAuthor, " \
-                         "a.bookPUblisher,a.bookAvailableNum ,a.bookSaleNumber, b.shelflocate, date_format(b.returntime, '%Y%m%d')"
-        self.__selSQL += " from t_isbninfo a left join v_borrowandbookinfo b on a.isbn = b.isbn"
+                         "a.bookPUblisher,a.bookAvailableNum ,a.bookSaleNumber, a.shelflocate, date_format(b.returntime, '%Y%m%d')"
+        self.__selSQL += " from v_isbnlocate a left join v_borrowandbookinfo b on a.isbn = b.isbn "
         #date_format(time, '%Y%m%d')
         flagIfFirst = 0
         previousNum = 0

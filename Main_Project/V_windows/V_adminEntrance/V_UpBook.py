@@ -109,7 +109,7 @@ class V_UpBook():
         #不存在返回书架信息
         ret = vc.searchIsbnExist(infoList)
 
-        if ret is  '1':##isbn存在
+        if ret ==  '1':##isbn存在
             infoList = ['4.1', self.isbn, self.operId]
             ##获得最新的bookid
             bookId = vc.addBookExist(infoList)
@@ -158,7 +158,7 @@ class V_UpBook():
 
         flag = False
         for i in self.ret:
-            if self.stringLocate.get() == i:
+            if self.stringLocate.get() == i[0]:
                 flag = True
         if flag == False:
             messagebox.showerror(message= '书架信息有误')

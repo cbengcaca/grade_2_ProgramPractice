@@ -6,7 +6,7 @@ from V_windows.V_readerEntrance.V_BorrowOrReturnBook import V_BorrowOrReturnBook
 class V_ReaderEntrance():
     def __init__(self):
         self.size = '400x200'
-        self.locate = '+400+200'
+        self.locate = '+20+300'
         self.root = Tk()
         self.root.title('读者入口')
         self.root.geometry(self.size)

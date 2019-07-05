@@ -7,7 +7,7 @@ class V_Search():
         self.size = '400x200'
         self.locate = '+400+200'
         self.root = Tk()
-        self.root.title('SEARCH')
+        self.root.title('查询')
         self.root.geometry(self.size)
         self.root.geometry(self.locate)
         self.root.resizable(0,0)
@@ -18,16 +18,16 @@ class V_Search():
         frameSearchEntrance = Frame(self.root)
         frameSearchEntrance.pack(side = TOP)
 
-        buttonSearchPlus = Button(frameSearchEntrance,text = 'SEARCHPLUS',command = self.openSearchPlus,font = 'Consoles')
+        buttonSearchPlus = Button(frameSearchEntrance,text = '高级SQL查询',command = self.openSearchPlus,font = 'Consoles')
         buttonSearchPlus.pack(side = LEFT)
 
-        buttonSearchNormal = Button(frameSearchEntrance,text = 'SEARCHNORMAL',command = self.openSearchNormal,font = 'Consoles')
+        buttonSearchNormal = Button(frameSearchEntrance,text = '普通查询',command = self.openSearchNormal,font = 'Consoles')
         buttonSearchNormal.pack(side = RIGHT)
 
         labelBlank2 = Label(self.root)
         labelBlank2.pack(side = BOTTOM)
 
-        buttonReturn = Button(self.root,text = 'RETURN',command = self.returnFather,font = 'Consoles')
+        buttonReturn = Button(self.root,text = '返回',command = self.returnFather,font = 'Consoles')
         buttonReturn.pack(side = BOTTOM)
         mainloop()
 

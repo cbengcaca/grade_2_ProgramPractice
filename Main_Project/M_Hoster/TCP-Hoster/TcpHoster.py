@@ -15,10 +15,10 @@ from M_Hoster.M_Control.MC_downBook import MC_downBook
 from M_Hoster.M_Control.MC_BuyBook import MC_BuyBook
 import time
 class TcpHoster(threading.Thread):
-    def __init__(self):
+    def __init__(self, hostIp):
         threading.Thread.__init__(self)
         self.flag = True
-        self.host = '10.240.224.173'
+        self.host = hostIp
         self.port = 4700
         self.buf = 1024
         self.addr = (self.host, self.port)
@@ -240,6 +240,7 @@ class hosterCtrl(threading.Thread):
         self.root.geometry('+500+200')
         self.root.resizable(0,0)
 
+
         labelBlank1 = Label(self.root)
         labelBlank1.pack(side = TOP)
 
@@ -264,7 +265,8 @@ class hosterCtrl(threading.Thread):
         if self.hoster is not None:
             messagebox.showwarning('tip', 'Hoster is already start')
         else:
-            self.hoster = TcpHoster()
+            ip = '10.240.224.173'
+            self.hoster = TcpHoster(hostIp= ip)
             self.hoster.start()
             messagebox.showinfo('tip', 'Hoster is start')
 

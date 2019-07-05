@@ -13,8 +13,7 @@ class V_AdminEntrance():
         self.id = ''
         self.pwd = ''
 
-
-        self.locate = '+400+200'
+        self.locate = '+20+550'
         self.size = '500x300'
 
         self.root.title('管理员入口')
